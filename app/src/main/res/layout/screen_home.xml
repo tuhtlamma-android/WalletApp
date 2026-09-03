@@ -85,13 +85,12 @@
                     android:layout_weight="1"
                     android:gravity="bottom"
                     android:orientation="horizontal">
-
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="↑\nTop up"
+                        android:text="Top up"
                         android:textColor="@color/white"
                         android:textSize="11sp" />
 
