@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="wallet_screen_padding">16dp</dimen>
+    <dimen name="wallet_space_xs">4dp</dimen>
+    <dimen name="wallet_space_sm">8dp</dimen>
+    <dimen name="wallet_space_md">12dp</dimen>
+    <dimen name="wallet_space_lg">16dp</dimen>
+    <dimen name="wallet_space_xl">24dp</dimen>
+    <dimen name="wallet_space_2xl">32dp</dimen>
+    <dimen name="wallet_button_height">45dp</dimen>
+    <dimen name="wallet_field_height">60dp</dimen>
+    <dimen name="wallet_radius_sm">4dp</dimen>
+    <dimen name="wallet_radius_md">8dp</dimen>
+    <dimen name="wallet_nav_height">62dp</dimen>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="16dp">
+
+    <TextView
+        style="@style/TextAppearance.Wallet.Display"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:text="@string/more" />
+
+    <TextView android:id="@+id/payBillsButton" style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="58dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:text="◉   Pay bills                                                        ›" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/wallet_alice_blue" />
+    <TextView android:id="@+id/transferButton" style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="58dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:text="⇄   Transfer                                                         ›" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/wallet_alice_blue" />
+    <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="58dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:text="↑   Topup                                                            ›" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/wallet_alice_blue" />
+    <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="58dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:text="↓   Withdraw                                                         ›" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/wallet_alice_blue" />
+    <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="58dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:text="◷   Analytics                                                        ›" />
+    <View android:layout_width="match_parent" android:layout_height="6dp" android:background="@color/wallet_alice_blue" />
+    <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="58dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:text="\?   Help                                                             ›" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/wallet_alice_blue" />
+    <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="58dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:text="☎   Contact us                                                       ›" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/wallet_alice_blue" />
+    <TextView android:id="@+id/aboutButton" style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="58dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:text="ⓘ   About                                                            ›" />
+</LinearLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView android:id="@+id/backButton" android:layout_width="wrap_content" android:layout_height="52dp" android:gravity="center_vertical" android:text="‹  Back" android:textColor="@color/wallet_blue" android:textSize="12sp" android:textStyle="bold" />
+        <TextView style="@style/TextAppearance.Wallet.Display" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="@string/transfer_to" />
+        <TextView android:layout_width="match_parent" android:layout_height="64dp" android:layout_marginTop="24dp" android:gravity="center_vertical" android:text="⊕    New contact" android:textColor="@color/wallet_black" android:textSize="13sp" />
+        <TextView style="@style/TextAppearance.Wallet.Caption" android:layout_width="match_parent" android:layout_height="32dp" android:gravity="center" android:text="────────────   or   ────────────" />
+        <EditText android:layout_width="match_parent" android:layout_height="44dp" android:layout_marginTop="8dp" android:background="@drawable/bg_wallet_outline" android:hint="⌕  Search contact" android:paddingHorizontal="12dp" android:textSize="14sp" />
+
+        <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="match_parent" android:layout_height="40dp" android:gravity="bottom" android:paddingBottom="6dp" android:text="Frequent contacts" />
+        <LinearLayout android:id="@+id/contactButton" android:layout_width="match_parent" android:layout_height="72dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="48dp" android:layout_height="48dp" android:background="@drawable/bg_wallet_avatar" android:gravity="center" android:text="AA" android:textStyle="bold" />
+            <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="10dp" android:layout_weight="1" android:text="Ali Ahmed\n+1-300-555-0161" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textSize="20sp" />
+        </LinearLayout>
+        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/wallet_alice_blue" />
+        <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="72dp" android:gravity="center_vertical" android:text="SG   Steve Gates\n       +1-300-555-0119                                             ›" />
+        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/wallet_alice_blue" />
+        <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="72dp" android:gravity="center_vertical" android:text="EJ   Elon Jobs\n       +1-202-555-0171                                             ›" />
+        <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="match_parent" android:layout_height="48dp" android:gravity="bottom" android:paddingBottom="6dp" android:text="All contacts" />
+        <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="72dp" android:gravity="center_vertical" android:text="AA   Ali Ahmed\n       +1-300-555-0161                                             ›" />
+        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/wallet_alice_blue" />
+        <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="72dp" android:gravity="center_vertical" android:text="SG   Steve Gates\n       +1-300-555-0119                                             ›" />
+    </LinearLayout>
+</ScrollView>

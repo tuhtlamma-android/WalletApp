@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView android:id="@+id/backButton" android:layout_width="wrap_content" android:layout_height="52dp" android:gravity="center_vertical" android:text="‹  Back" android:textColor="@color/wallet_blue" android:textSize="12sp" android:textStyle="bold" />
+    <TextView style="@style/TextAppearance.Wallet.Display" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:gravity="center" android:text="@string/transfer_to" />
+    <TextView android:layout_width="match_parent" android:layout_height="96dp" android:layout_marginTop="24dp" android:gravity="center" android:text="AA    Ali Ahmed\n        +1-300-555-0161" android:textColor="@color/wallet_black" android:textSize="14sp" android:textStyle="bold" />
+    <TextView style="@style/TextAppearance.Wallet.Caption" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="30dp" android:gravity="center" android:text="Enter Amount" />
+    <TextView android:layout_width="match_parent" android:layout_height="72dp" android:gravity="center" android:text="$1,252.00" android:textColor="@color/wallet_black" android:textSize="36sp" />
+    <View android:layout_width="198dp" android:layout_height="1dp" android:layout_gravity="center_horizontal" android:background="@color/wallet_black_coral" />
+    <Space android:layout_width="1dp" android:layout_height="0dp" android:layout_weight="1" />
+    <com.google.android.material.button.MaterialButton android:id="@+id/securePaymentButton" style="@style/Widget.Wallet.PrimaryButton" android:layout_width="match_parent" android:backgroundTint="@color/wallet_mango" android:text="▣  Secure payment" android:textColor="@color/wallet_purple_dark" />
+</LinearLayout>

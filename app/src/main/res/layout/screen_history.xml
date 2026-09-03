@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="16dp">
+
+        <TextView
+            style="@style/TextAppearance.Wallet.Display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:text="@string/history" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="37dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_wallet_outline"
+                android:hint="⌕  Value goes here"
+                android:paddingHorizontal="10dp"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="88dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_wallet_outline"
+                android:gravity="center"
+                android:text="☷  Filter"
+                android:textColor="@color/wallet_black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/TextAppearance.Wallet.Title"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="bottom"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="8dp"
+            android:text="Today"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/transactionButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp">
+
+            <TextView android:layout_width="36dp" android:layout_height="36dp" android:background="@drawable/bg_wallet_circle_blue" android:gravity="center" android:text="W" android:textColor="@color/wallet_blue" android:textStyle="bold" />
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="10dp" android:layout_weight="1" android:text="Walmart\nToday 12:32" android:textColor="@color/wallet_black" android:textSize="12sp" android:textStyle="bold" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="-$35.23  ›" android:textColor="@color/wallet_error" android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent" android:layout_height="60dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:text="↑   Top up                         Yesterday 02:12          +$430.00  ›" android:textColor="@color/wallet_success" android:textSize="11sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="60dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:text="N   Netflix                         Dec 24 12:32                 -$13.00  ›" android:textColor="@color/wallet_error" android:textSize="11sp" />
+        <View android:layout_width="match_parent" android:layout_height="6dp" android:background="@color/wallet_alice_blue" />
+
+        <TextView style="@style/TextAppearance.Wallet.Title" android:layout_width="match_parent" android:layout_height="60dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:text="Yesterday" android:textSize="16sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="60dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:text="a   Amazon                         Today 12:32                    -$12.23  ›" android:textColor="@color/wallet_error" android:textSize="11sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="60dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:text="✓   Nike                              Yesterday 02:12              -$50.23  ›" android:textColor="@color/wallet_error" android:textSize="11sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="60dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:text="⌂   The Home Depot             Dec 24 13:53                  -$129.00  ›" android:textColor="@color/wallet_error" android:textSize="11sp" />
+        <View android:layout_width="match_parent" android:layout_height="6dp" android:background="@color/wallet_alice_blue" />
+        <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="match_parent" android:layout_height="70dp" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:text="Thursday\nDecember 29, 2022" android:textSize="14sp" />
+    </LinearLayout>
+</ScrollView>

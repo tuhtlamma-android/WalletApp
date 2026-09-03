@@ -2,4 +2,18 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="wallet_purple">#5521F3</color>
+    <color name="wallet_purple_dark">#28008F</color>
+    <color name="wallet_purple_soft">#EEE8FF</color>
+    <color name="wallet_mango">#FDC228</color>
+    <color name="wallet_black">#191919</color>
+    <color name="wallet_black_coral">#535D66</color>
+    <color name="wallet_slate">#78838D</color>
+    <color name="wallet_alice_blue">#EDEFF6</color>
+    <color name="wallet_surface_alt">#F7F8FC</color>
+    <color name="wallet_success">#37A866</color>
+    <color name="wallet_success_soft">#EAF8F0</color>
+    <color name="wallet_error">#B83232</color>
+    <color name="wallet_error_soft">#FFF2F2</color>
+    <color name="wallet_blue">#1769E0</color>
 </resources>

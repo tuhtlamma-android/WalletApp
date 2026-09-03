@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:text="‹  Back"
+        android:textColor="@color/wallet_blue"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <TextView
+        style="@style/TextAppearance.Wallet.Section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/sms_sent"
+        android:textColor="@color/wallet_black" />
+
+    <TextView
+        style="@style/TextAppearance.Wallet.Caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="@string/enter_six_digit_code" />
+
+    <EditText
+        android:id="@+id/otpInput"
+        android:layout_width="198dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/wallet_purple"
+        android:gravity="center"
+        android:hint="XXX-XXX"
+        android:inputType="number"
+        android:letterSpacing="0.08"
+        android:maxLength="6"
+        android:textColor="@color/wallet_black"
+        android:textColorHint="#B7C0C8"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/resendButton"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:gravity="center"
+        android:text="Resend code    00:32"
+        android:textColor="@color/wallet_slate"
+        android:textSize="12sp" />
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@color/wallet_surface_alt"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lineSpacingExtra="20dp"
+            android:text="1        2        3\n\n4        5        6\n\n7        8        9\n\n         0        ⌫"
+            android:textColor="@color/wallet_black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/doneButton"
+            style="@style/Widget.Wallet.PrimaryButton"
+            android:layout_width="match_parent"
+            android:text="@string/done" />
+    </LinearLayout>
+</LinearLayout>
