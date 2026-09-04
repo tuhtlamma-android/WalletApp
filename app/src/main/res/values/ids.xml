@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="authPhoneInput" type="id" />
+    <item name="authPasswordInput" type="id" />
+    <item name="registerNameInput" type="id" />
+    <item name="registerEmailInput" type="id" />
+    <item name="registerPasswordInput" type="id" />
+    <item name="otpInput" type="id" />
+    <item name="billSearchInput" type="id" />
+    <item name="contactSearchInput" type="id" />
+    <item name="transferAmountText" type="id" />
+</resources>

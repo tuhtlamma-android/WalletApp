@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.CallSuper
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
@@ -17,6 +18,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.lifecycleScope
@@ -70,7 +72,12 @@ abstract class IActivity<VB : ViewDataBinding, VM : IViewModel<*>> : AppCompatAc
         setupInit()
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        enableConfigEdgeSystemBar()
+        // Full-screen design frames include their own status bar. Let those activities draw
+        // behind Android's system bars so the top edge is not padded a second time.
+        enableConfigEdgeSystemBar(
+            isFitsSystemWindows = !isHideSystemBars(),
+            isLight = usesDarkStatusBarIcons()
+        )
         registerBackPressedDispatcher()
         viewBinding.lifecycleOwner = this@IActivity
 
@@ -97,6 +104,14 @@ abstract class IActivity<VB : ViewDataBinding, VM : IViewModel<*>> : AppCompatAc
     }
 
     protected open fun isHideSystemBars(): Boolean = false
+    protected open fun usesDarkStatusBarIcons(): Boolean = true
+
+    protected fun applyStatusBarStyle(@ColorRes color: Int, darkIcons: Boolean) {
+        @Suppress("DEPRECATION")
+        window.statusBarColor = ContextCompat.getColor(this, color)
+        WindowInsetsControllerCompat(window, window.decorView)
+            .isAppearanceLightStatusBars = darkIcons
+    }
     protected fun setupApplyWindowInsetListener(block: (insets: WindowInsetsCompat) -> Unit) {
         ViewCompat.setOnApplyWindowInsetsListener(window.decorView) { _, insetCompact ->
             block(insetCompact)
