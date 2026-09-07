@@ -120,16 +120,29 @@
                         </LinearLayout>
                         <LinearLayout style="@style/Widget.Wallet.AvatarColumn">
                             <ImageView style="@style/Widget.Wallet.AvatarImage" android:src="@drawable/img_avatar_ali" />
-                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Ali" />
+                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Anh Trung" />
                         </LinearLayout>
                         <LinearLayout style="@style/Widget.Wallet.AvatarColumn">
                             <ImageView style="@style/Widget.Wallet.AvatarImage" android:src="@drawable/img_avatar_steve" />
-                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Steve" />
+                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Anh An" />
                         </LinearLayout>
                         <LinearLayout style="@style/Widget.Wallet.AvatarColumn">
                             <ImageView style="@style/Widget.Wallet.AvatarImage" android:src="@drawable/img_avatar_ahmed" />
-                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Ahmed" />
+                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Anh Nghia" />
                         </LinearLayout>
+                        <LinearLayout style="@style/Widget.Wallet.AvatarColumn">
+                            <ImageView style="@style/Widget.Wallet.AvatarImage" android:src="@drawable/img_avatar_ali" />
+                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Anh Trung" />
+                        </LinearLayout>
+                        <LinearLayout style="@style/Widget.Wallet.AvatarColumn">
+                            <ImageView style="@style/Widget.Wallet.AvatarImage" android:src="@drawable/img_avatar_ali" />
+                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Anh Trung" />
+                        </LinearLayout><LinearLayout style="@style/Widget.Wallet.AvatarColumn">
+                            <ImageView style="@style/Widget.Wallet.AvatarImage" android:src="@drawable/img_avatar_ali" />
+                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Anh Trung" />
+                        </LinearLayout>
+
+
                     </LinearLayout>
                 </HorizontalScrollView>
                 <LinearLayout android:layout_width="match_parent" android:layout_height="38dp" android:gravity="center_vertical" android:orientation="horizontal">

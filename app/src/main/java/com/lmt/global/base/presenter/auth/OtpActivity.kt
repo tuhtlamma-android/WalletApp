@@ -2,6 +2,8 @@ package com.lmt.global.base.presenter.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
@@ -14,12 +16,15 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class OtpActivity : IActivity<ActivityOtpBinding, CommonViewModel>() {
 
+    private var resendTimer: CountDownTimer? = null
+
     override fun provideViewModel() = viewModel<CommonViewModel>()
     override fun provideLayout() = R.layout.activity_otp
 
     override fun initViews(savedInstanceState: Bundle?) {
         viewBinding.otpInput.showSoftInputOnFocus = false
         updateValidState()
+        startResendCountdown()
     }
 
     override fun initListeners() = with(viewBinding) {
@@ -32,6 +37,7 @@ class OtpActivity : IActivity<ActivityOtpBinding, CommonViewModel>() {
             val digits = otpDigits()
             if (digits.isNotEmpty()) renderOtp(digits.dropLast(1))
         }
+        resendButton.setOnClickListener { startResendCountdown() }
         doneButton.setOnClickListener {
             if (otpDigits().length == OTP_LENGTH) {
                 startActivity(Intent(this@OtpActivity, HomeActivity::class.java).apply {
@@ -50,8 +56,27 @@ class OtpActivity : IActivity<ActivityOtpBinding, CommonViewModel>() {
 
     private fun updateValidState() = with(viewBinding) {
         val valid = otpDigits().length == OTP_LENGTH
-        validIcon.visibility = if (valid) android.view.View.VISIBLE else android.view.View.GONE
-        resendButton.text = getString(if (valid) R.string.resend_ready else R.string.resend_waiting)
+        validIcon.visibility = if (valid) View.VISIBLE else View.GONE
+    }
+
+    private fun startResendCountdown() = with(viewBinding.resendButton) {
+        resendTimer?.cancel()
+        isEnabled = false
+        alpha = DISABLED_ALPHA
+        text = getString(R.string.resend_countdown, COUNTDOWN_SECONDS)
+
+        resendTimer = object : CountDownTimer(COUNTDOWN_MILLIS, TICK_MILLIS) {
+            override fun onTick(millisUntilFinished: Long) {
+                val seconds = (millisUntilFinished + TICK_MILLIS - 1) / TICK_MILLIS
+                text = getString(R.string.resend_countdown, seconds)
+            }
+
+            override fun onFinish() {
+                text = getString(R.string.resend_code)
+                isEnabled = true
+                alpha = ENABLED_ALPHA
+            }
+        }.start()
     }
 
     private fun otpDigits(): String = viewBinding.otpInput.text?.filter(Char::isDigit)?.toString().orEmpty()
@@ -62,7 +87,18 @@ class OtpActivity : IActivity<ActivityOtpBinding, CommonViewModel>() {
         viewBinding.otpInput.setSelection(formatted.length)
     }
 
+    override fun onDestroy() {
+        resendTimer?.cancel()
+        resendTimer = null
+        super.onDestroy()
+    }
+
     companion object {
         private const val OTP_LENGTH = 6
+        private const val COUNTDOWN_SECONDS = 30L
+        private const val COUNTDOWN_MILLIS = COUNTDOWN_SECONDS * 1_000L
+        private const val TICK_MILLIS = 1_000L
+        private const val DISABLED_ALPHA = 0.55f
+        private const val ENABLED_ALPHA = 1f
     }
 }

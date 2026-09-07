@@ -33,7 +33,7 @@
                 android:contentDescription="@null" android:src="@drawable/ic_wallet_otp_valid"
                 android:visibility="gone" />
         </LinearLayout>
-        <TextView android:id="@+id/resendButton" android:layout_width="match_parent" android:layout_height="52dp" android:gravity="center" android:text="@string/resend_waiting" android:textColor="@color/wallet_blue" android:textSize="11sp" android:textStyle="bold" />
+        <TextView android:id="@+id/resendButton" android:layout_width="match_parent" android:layout_height="52dp" android:gravity="center" android:text="@string/resend_code" android:textColor="@color/wallet_blue" android:textSize="11sp" android:textStyle="bold" />
         <Space android:layout_width="1dp" android:layout_height="0dp" android:layout_weight="1" />
         <GridLayout
             android:layout_width="match_parent"

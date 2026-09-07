@@ -72,14 +72,15 @@ abstract class IActivity<VB : ViewDataBinding, VM : IViewModel<*>> : AppCompatAc
         setupInit()
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        // Full-screen design frames include their own status bar. Let those activities draw
-        // behind Android's system bars so the top edge is not padded a second time.
+        // Draw edge-to-edge consistently on every Android version. Normal screens receive
+        // their real status-bar/cutout inset below; full-screen screens opt out of that inset.
         enableConfigEdgeSystemBar(
-            isFitsSystemWindows = !isHideSystemBars(),
+            isFitsSystemWindows = false,
             isLight = usesDarkStatusBarIcons()
         )
         registerBackPressedDispatcher()
         viewBinding.lifecycleOwner = this@IActivity
+        applyTopSafeInset()
 
         initViews(savedInstanceState)
         initObservers()
@@ -105,6 +106,31 @@ abstract class IActivity<VB : ViewDataBinding, VM : IViewModel<*>> : AppCompatAc
 
     protected open fun isHideSystemBars(): Boolean = false
     protected open fun usesDarkStatusBarIcons(): Boolean = true
+
+    private fun applyTopSafeInset() {
+        if (isHideSystemBars()) return
+
+        val root = viewBinding.root
+        val initialPaddingLeft = root.paddingLeft
+        val initialPaddingTop = root.paddingTop
+        val initialPaddingRight = root.paddingRight
+        val initialPaddingBottom = root.paddingBottom
+
+        ViewCompat.setOnApplyWindowInsetsListener(root) { view, insets ->
+            val safeTop = insets.getInsets(
+                WindowInsetsCompat.Type.statusBars() or
+                    WindowInsetsCompat.Type.displayCutout()
+            ).top
+            view.setPadding(
+                initialPaddingLeft,
+                initialPaddingTop + safeTop,
+                initialPaddingRight,
+                initialPaddingBottom
+            )
+            insets
+        }
+        ViewCompat.requestApplyInsets(root)
+    }
 
     protected fun applyStatusBarStyle(@ColorRes color: Int, darkIcons: Boolean) {
         @Suppress("DEPRECATION")

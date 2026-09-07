@@ -31,9 +31,14 @@ class PasswordActivity : IActivity<ActivityPasswordBinding, CommonViewModel>() {
             ForgotPasswordBottomSheet.newInstance().show(supportFragmentManager, "forgot-password")
         }
         loginButton.setOnClickListener {
-            if (passwordInput.text.isNullOrBlank()) {
+            val password = passwordInput.text?.toString().orEmpty()
+            if (password.isBlank()) {
                 passwordInput.requestFocus()
                 Toast.makeText(this@PasswordActivity, R.string.enter_password_error, Toast.LENGTH_SHORT).show()
+            } else if (!AuthValidator.isPasswordValid(password)) {
+                passwordInput.error = getString(R.string.password_length_error)
+                passwordInput.requestFocus()
+                Toast.makeText(this@PasswordActivity, R.string.password_length_error, Toast.LENGTH_SHORT).show()
             } else {
                 startActivity(Intent(this@PasswordActivity, HomeActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

@@ -27,16 +27,28 @@ class CreateAccountActivity : IActivity<ActivityCreateAccountBinding, CommonView
             passwordInput.setSelection(passwordInput.text?.length ?: 0)
         }
         registerButton.setOnClickListener {
-            val valid = when {
+            val emptyInput = when {
                 nameInput.text.isNullOrBlank() -> nameInput
                 emailInput.text.isNullOrBlank() -> emailInput
                 passwordInput.text.isNullOrBlank() -> passwordInput
                 else -> null
             }
+            val email = emailInput.text?.toString().orEmpty()
+            val password = passwordInput.text?.toString().orEmpty()
             when {
-                valid != null -> {
-                    valid.requestFocus()
+                emptyInput != null -> {
+                    emptyInput.requestFocus()
                     Toast.makeText(this@CreateAccountActivity, R.string.complete_all_fields, Toast.LENGTH_SHORT).show()
+                }
+                !AuthValidator.isEmailValid(email) -> {
+                    emailInput.error = getString(R.string.invalid_email_error)
+                    emailInput.requestFocus()
+                    Toast.makeText(this@CreateAccountActivity, R.string.invalid_email_error, Toast.LENGTH_SHORT).show()
+                }
+                !AuthValidator.isPasswordValid(password) -> {
+                    passwordInput.error = getString(R.string.password_length_error)
+                    passwordInput.requestFocus()
+                    Toast.makeText(this@CreateAccountActivity, R.string.password_length_error, Toast.LENGTH_SHORT).show()
                 }
                 !termsCheckbox.isChecked -> Toast.makeText(
                     this@CreateAccountActivity,
