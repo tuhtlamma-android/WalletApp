@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/white" android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp">
+        <TextView android:id="@+id/backButton" style="@style/Widget.Wallet.BackButton" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="196dp" android:layout_marginTop="26dp" android:background="@drawable/bg_wallet_card" android:orientation="vertical" android:padding="16dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Abdullah Ghatasheh" android:textColor="@color/white" />
+                <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="**** 3245" android:textColor="@color/white" />
+            </LinearLayout>
+            <Space android:layout_width="1dp" android:layout_height="0dp" android:layout_weight="1" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@font/sora_family" android:text="Balance" android:textColor="@color/white" android:textSize="13sp" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="bottom" android:orientation="horizontal">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:fontFamily="@font/sora_family" android:text="$2,354" android:textColor="@color/white" android:textSize="24sp" android:textStyle="bold" />
+                <ImageView android:layout_width="28dp" android:layout_height="28dp" android:contentDescription="@null" android:src="@drawable/ic_wallet_nfc" app:tint="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="28dp" android:layout_height="28dp" android:contentDescription="@null" android:src="@drawable/ic_wallet_nfc" />
+            <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Move near a device to pay" android:textColor="@color/wallet_slate" android:textSize="18sp" />
+        </LinearLayout>
+        <com.google.android.material.button.MaterialButton style="@style/Widget.Wallet.PrimaryButton" android:layout_width="match_parent" android:layout_marginBottom="16dp" android:text="QR Pay" app:icon="@drawable/ic_wallet_qr" app:iconGravity="textStart" app:iconSize="18dp" app:iconTint="@null" />
+    </LinearLayout>
+</layout>

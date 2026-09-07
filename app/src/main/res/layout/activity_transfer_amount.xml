@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/white" android:orientation="vertical">
+        <TextView android:id="@+id/backButton" style="@style/Widget.Wallet.BackButton" android:paddingStart="16dp" />
+        <TextView style="@style/TextAppearance.Wallet.Display" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:gravity="center" android:text="@string/transfer_to" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="88dp" android:layout_marginTop="20dp" android:gravity="center" android:orientation="horizontal">
+            <ImageView android:layout_width="72dp" android:layout_height="72dp" android:contentDescription="@null" android:src="@drawable/img_avatar_ali" />
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:orientation="vertical">
+                <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ali Ahmed" />
+                <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+1-300-555-0161" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView style="@style/TextAppearance.Wallet.Caption" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:gravity="center" android:text="Enter Amount" />
+        <LinearLayout android:layout_width="198dp" android:layout_height="72dp" android:layout_gravity="center_horizontal" android:gravity="center" android:orientation="vertical">
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="0dp" android:layout_weight="1" android:gravity="center" android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content" android:layout_height="match_parent" android:fontFamily="@font/sora_family" android:gravity="center" android:text="$" android:textColor="@color/wallet_black" android:textSize="36sp" />
+                <EditText android:id="@+id/amountInput" android:layout_width="150dp" android:layout_height="match_parent" android:background="@null" android:gravity="center_vertical" android:hint="00.00" android:inputType="numberDecimal" android:maxLines="1" android:padding="0dp" android:textColor="@color/wallet_black" android:textColorHint="@color/wallet_input_hint" android:textSize="36sp" />
+            </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/wallet_purple" />
+        </LinearLayout>
+        <Space android:layout_width="1dp" android:layout_height="0dp" android:layout_weight="1" />
+        <GridLayout android:layout_width="match_parent" android:layout_height="267dp" android:background="@color/wallet_surface_alt" android:columnCount="3" android:rowCount="4">
+            <TextView android:id="@+id/key1" style="@style/Widget.Wallet.Key" android:text="1" /><TextView android:id="@+id/key2" style="@style/Widget.Wallet.Key" android:text="2" /><TextView android:id="@+id/key3" style="@style/Widget.Wallet.Key" android:text="3" />
+            <TextView android:id="@+id/key4" style="@style/Widget.Wallet.Key" android:text="4" /><TextView android:id="@+id/key5" style="@style/Widget.Wallet.Key" android:text="5" /><TextView android:id="@+id/key6" style="@style/Widget.Wallet.Key" android:text="6" />
+            <TextView android:id="@+id/key7" style="@style/Widget.Wallet.Key" android:text="7" /><TextView android:id="@+id/key8" style="@style/Widget.Wallet.Key" android:text="8" /><TextView android:id="@+id/key9" style="@style/Widget.Wallet.Key" android:text="9" />
+            <TextView android:id="@+id/decimalKey" style="@style/Widget.Wallet.Key" android:text="." /><TextView android:id="@+id/key0" style="@style/Widget.Wallet.Key" android:text="0" /><ImageView android:id="@+id/deleteKey" style="@style/Widget.Wallet.KeyImage" android:contentDescription="@string/delete" android:src="@drawable/ic_wallet_keypad_delete" />
+        </GridLayout>
+        <FrameLayout android:layout_width="match_parent" android:layout_height="69dp" android:background="@color/wallet_surface_alt" android:paddingHorizontal="16dp" android:paddingBottom="12dp">
+            <com.google.android.material.button.MaterialButton android:id="@+id/doneButton" style="@style/Widget.Wallet.PrimaryButton" android:layout_width="match_parent" android:layout_gravity="bottom" android:text="@string/done" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>

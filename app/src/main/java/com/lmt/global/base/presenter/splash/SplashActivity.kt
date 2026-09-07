@@ -8,7 +8,7 @@ import com.lmt.global.base.R
 import com.lmt.global.base.common.CommonViewModel
 import com.lmt.global.base.common.IActivity
 import com.lmt.global.base.databinding.ActivitySplashBinding
-import com.lmt.global.base.presenter.auth.AuthActivity
+import com.lmt.global.base.presenter.auth.LoginActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -21,7 +21,7 @@ class SplashActivity : IActivity<ActivitySplashBinding, CommonViewModel>() {
     override fun initViews(savedInstanceState: Bundle?) {
         lifecycleScope.launch {
             delay(SPLASH_DURATION_MS)
-            startActivity(Intent(this@SplashActivity, AuthActivity::class.java))
+            startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
             finish()
         }
     }

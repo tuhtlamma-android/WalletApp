@@ -21,4 +21,7 @@
     <color name="wallet_error">#E05555</color>
     <color name="wallet_error_soft">#FFF6F6</color>
     <color name="wallet_blue">#1769E0</color>
+    <color name="wallet_avatar_sand">#F4D8A5</color>
+    <color name="wallet_avatar_pink">#D68CAB</color>
+    <color name="wallet_avatar_orange">#FF5533</color>
 </resources>

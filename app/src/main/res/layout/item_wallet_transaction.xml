@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@color/white" android:orientation="vertical">
+        <TextView
+            android:id="@+id/sectionText"
+            style="@style/TextAppearance.Wallet.Body"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:gravity="bottom"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="14dp"
+            android:textColor="@color/wallet_black_coral"
+            android:textSize="16sp" />
+        <LinearLayout
+            android:id="@+id/transactionRow"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+            <ImageView android:id="@+id/merchantIcon" android:layout_width="32dp" android:layout_height="32dp" android:contentDescription="@null" />
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:layout_weight="1" android:orientation="vertical">
+                <TextView android:id="@+id/merchantText" style="@style/TextAppearance.Wallet.Section" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:id="@+id/dateText" style="@style/TextAppearance.Wallet.Body" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/wallet_slate" />
+            </LinearLayout>
+            <TextView android:id="@+id/amountText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="13sp" />
+            <ImageView style="@style/Widget.Wallet.ChevronImage" />
+        </LinearLayout>
+        <View style="@style/Widget.Wallet.Divider" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" />
+    </LinearLayout>
+</layout>

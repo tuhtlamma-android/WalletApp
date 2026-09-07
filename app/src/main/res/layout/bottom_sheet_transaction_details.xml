@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@color/white" android:orientation="vertical" android:padding="16dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="56dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <ImageView android:layout_width="56dp" android:layout_height="56dp" android:contentDescription="@null" android:src="@drawable/img_merchant_walmart" />
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:layout_weight="1" android:orientation="vertical">
+                <TextView style="@style/TextAppearance.Wallet.Title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Walmart" android:textSize="17sp" />
+                <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Retailer corporation" android:textColor="@color/wallet_slate" />
+            </LinearLayout>
+            <TextView android:id="@+id/doneButton" android:layout_width="56dp" android:layout_height="match_parent" android:gravity="center" android:text="@string/done" android:textColor="@color/wallet_blue" android:textSize="13sp" android:textStyle="bold" />
+        </LinearLayout>
+        <TextView android:layout_width="match_parent" android:layout_height="64dp" android:layout_marginTop="24dp" android:background="@drawable/bg_wallet_error_soft" android:gravity="center" android:text="-$35.23" android:textColor="@color/wallet_error" android:textSize="22sp" android:textStyle="bold" />
+        <TextView style="@style/Widget.Wallet.DetailBox" android:text="Today\nDecember 29, 2022 – 12:32" />
+        <LinearLayout android:id="@+id/copyButton" style="@style/Widget.Wallet.DetailBoxRow" android:orientation="horizontal">
+            <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:lineSpacingExtra="3dp" android:text="Transaction no.\n23010412432431" android:textColor="@color/wallet_black_coral" android:textStyle="bold" />
+            <ImageView android:layout_width="26dp" android:layout_height="26dp" android:contentDescription="@null" android:src="@drawable/ic_wallet_copy" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="56dp" android:gravity="center" android:orientation="horizontal">
+            <ImageView android:layout_width="22dp" android:layout_height="22dp" android:contentDescription="@null" android:src="@drawable/ic_wallet_report" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="6dp" android:text="@string/report_problem" android:textColor="@color/wallet_error" android:textSize="13sp" android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

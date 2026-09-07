@@ -46,4 +46,25 @@
     <string name="transfer_to">Transfer to</string>
     <string name="back_to_wallet">Back to wallet</string>
     <string name="report_problem">⚑ Report a problem</string>
+    <string name="back_arrow">Back</string>
+    <string name="delete">Delete</string>
+    <string name="toggle_password">Show or hide password</string>
+    <string name="phone_hint">7X-XXXXXXX</string>
+    <string name="email_hint">e.g. email@example.com</string>
+    <string name="name_hint">e.g. John Doe</string>
+    <string name="password_hint">Enter your password</string>
+    <string name="create_account_prompt">Don’t have an account? Create account</string>
+    <string name="enter_phone_error">Enter your mobile number</string>
+    <string name="enter_password_error">Enter your password</string>
+    <string name="complete_all_fields">Please complete all fields</string>
+    <string name="accept_terms_error">Please accept the terms and privacy policy</string>
+    <string name="enter_otp_error">Enter the six-digit code</string>
+    <string name="reset_link_sent">Reset link sent</string>
+    <string name="resend_waiting">Resend code   00:32</string>
+    <string name="resend_ready">Resend code   00:00</string>
+    <string name="transaction_copied">Transaction number copied</string>
+    <string name="payment_done">Payment done!</string>
+    <string name="about_body">Our app allows you to easily store, manage, and spend your money on the go. With our secure platform, you can make transactions, check your balance, and track your spending all in one place.\n\nWhether you’re paying bills, shopping online, or sending money to friends and family, our app makes it easy and convenient to do so. Plus, with our various promotions and discounts, you can save even more while using our app.\n\nThank you for choosing us as your preferred e-wallet solution. If you have any questions or feedback, please don’t hesitate to contact us. We’re always here to help.</string>
+    <string name="enter_amount_error">Enter an amount</string>
+    <string name="transfer_failed">Transfer Failed :(</string>
 </resources>

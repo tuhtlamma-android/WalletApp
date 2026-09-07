@@ -24,7 +24,7 @@
     <style name="TextAppearance.Wallet.Display" parent="">
         <item name="android:fontFamily">@font/sora_family</item>
         <item name="android:textColor">@color/wallet_black</item>
-        <item name="android:textSize">28sp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textStyle">normal</item>
     </style>
 
@@ -45,13 +45,13 @@
     <style name="TextAppearance.Wallet.Body" parent="">
         <item name="android:fontFamily">@font/sora_family</item>
         <item name="android:textColor">@color/wallet_black_coral</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
     <style name="TextAppearance.Wallet.Caption" parent="">
         <item name="android:fontFamily">@font/sora_family</item>
         <item name="android:textColor">@color/wallet_slate</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="Widget.Wallet.PrimaryButton" parent="Widget.Material3.Button">
@@ -63,5 +63,264 @@
         <item name="android:textColor">@color/white</item>
         <item name="backgroundTint">#5732BF</item>
         <item name="cornerRadius">4dp</item>
+    </style>
+
+    <style name="Widget.Wallet.Input" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">46dp</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:background">@drawable/bg_wallet_outline</item>
+        <item name="android:fontFamily">@font/sora_family</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:textColor">@color/wallet_black</item>
+        <item name="android:textColorHint">@color/wallet_input_hint</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.Wallet.BackButton" parent="">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:fontFamily">@font/sora_family</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawableStart">@drawable/ic_wallet_back</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:text">@string/back_arrow</item>
+        <item name="android:textColor">@color/wallet_blue</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.Wallet.SocialButton" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/bg_wallet_outline</item>
+        <item name="android:padding">11dp</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="Widget.Wallet.Key" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:fontFamily">@font/sora_family</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/wallet_black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.Wallet.KeyImage" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:padding">22dp</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="Widget.Wallet.NavigationItem" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="Widget.Wallet.NavigationIndicator" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2dp</item>
+        <item name="android:background">@drawable/sel_nav_indicator</item>
+        <item name="android:duplicateParentState">true</item>
+    </style>
+
+    <style name="Widget.Wallet.NavigationIcon" parent="">
+        <item name="android:layout_width">26dp</item>
+        <item name="android:layout_height">26dp</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="Widget.Wallet.NavigationLabel" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:fontFamily">@font/sora_family</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/wallet_nav_text</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.Wallet.BalanceAction" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="Widget.Wallet.BalanceActionIcon" parent="">
+        <item name="android:layout_width">22dp</item>
+        <item name="android:layout_height">22dp</item>
+        <item name="android:contentDescription">@null</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="Widget.Wallet.BalanceActionLabel" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:fontFamily">@font/sora_family</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.Wallet.BalanceDivider" parent="">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">28dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:background">#7056C0</item>
+    </style>
+
+    <style name="Widget.Wallet.AvatarColumn" parent="">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="Widget.Wallet.AvatarImage" parent="">
+        <item name="android:layout_width">64dp</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:contentDescription">@null</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="Widget.Wallet.AvatarName" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:fontFamily">@font/sora_family</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/wallet_black</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.Wallet.DetailBox" parent="TextAppearance.Wallet.Body">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:background">@drawable/bg_wallet_outline</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.Wallet.DetailBoxRow" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:background">@drawable/bg_wallet_outline</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+    </style>
+
+    <style name="Widget.Wallet.ProfileRow" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">61dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="Widget.Wallet.ProfileContent" parent="TextAppearance.Wallet.Body">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="Widget.Wallet.ProfileLabel" parent="TextAppearance.Wallet.Body">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/wallet_slate</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.Wallet.ProfileValue" parent="TextAppearance.Wallet.Section">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.Wallet.ProfileEdit" parent="TextAppearance.Wallet.Body">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/wallet_blue</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="Widget.Wallet.MenuRow" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">57dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+    </style>
+
+    <style name="Widget.Wallet.MenuIcon" parent="">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:contentDescription">@null</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="Widget.Wallet.MenuLabel" parent="TextAppearance.Wallet.Section">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="Widget.Wallet.Divider" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/wallet_alice_blue</item>
+    </style>
+
+    <style name="Widget.Wallet.ListRow" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">62dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="Widget.Wallet.ListContent" parent="TextAppearance.Wallet.Section">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.Wallet.ChevronImage" parent="">
+        <item name="android:layout_width">14dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_marginStart">7dp</item>
+        <item name="android:contentDescription">@null</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:src">@drawable/ic_wallet_chevron</item>
     </style>
 </resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data />
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/white" android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+            <FrameLayout android:layout_width="match_parent" android:layout_height="52dp">
+                <TextView android:id="@+id/backButton" style="@style/Widget.Wallet.BackButton" android:layout_gravity="start|center_vertical" android:paddingStart="16dp" />
+                <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_gravity="center" android:gravity="center" android:text="@string/profile_settings" android:textSize="17sp" />
+            </FrameLayout>
+            <ImageView android:layout_width="110dp" android:layout_height="112dp" android:layout_gravity="center_horizontal" android:layout_marginTop="16dp" android:contentDescription="@null" android:src="@drawable/img_profile_verified" />
+            <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center" android:text="Abdullah Ghatasheh" android:textSize="15sp" />
+            <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:gravity="center" android:text="Joined 2 years ago" android:textColor="@color/wallet_slate" android:textSize="13sp" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="38dp" android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp">
+                <LinearLayout style="@style/Widget.Wallet.ProfileRow" android:orientation="horizontal">
+                    <ImageView style="@style/Widget.Wallet.MenuIcon" android:src="@drawable/ic_profile_name" />
+                    <LinearLayout style="@style/Widget.Wallet.ProfileContent" android:orientation="vertical">
+                        <TextView style="@style/Widget.Wallet.ProfileLabel" android:text="Full name" />
+                        <TextView style="@style/Widget.Wallet.ProfileValue" android:text="Abdullah Ghatasheh" />
+                    </LinearLayout>
+                    <TextView style="@style/Widget.Wallet.ProfileEdit" android:text="Edit" />
+                </LinearLayout>
+                <View style="@style/Widget.Wallet.Divider" />
+                <LinearLayout style="@style/Widget.Wallet.ProfileRow" android:orientation="horizontal">
+                    <ImageView style="@style/Widget.Wallet.MenuIcon" android:src="@drawable/ic_profile_mobile" />
+                    <LinearLayout style="@style/Widget.Wallet.ProfileContent" android:orientation="vertical">
+                        <TextView style="@style/Widget.Wallet.ProfileLabel" android:text="Mobile" />
+                        <TextView style="@style/Widget.Wallet.ProfileValue" android:text="+962 79 890 50 14" />
+                    </LinearLayout>
+                    <TextView style="@style/Widget.Wallet.ProfileEdit" android:text="Edit" />
+                </LinearLayout>
+                <View style="@style/Widget.Wallet.Divider" />
+                <LinearLayout style="@style/Widget.Wallet.ProfileRow" android:orientation="horizontal">
+                    <ImageView style="@style/Widget.Wallet.MenuIcon" android:src="@drawable/ic_profile_email" />
+                    <LinearLayout style="@style/Widget.Wallet.ProfileContent" android:orientation="vertical">
+                        <TextView style="@style/Widget.Wallet.ProfileLabel" android:text="Email" />
+                        <TextView style="@style/Widget.Wallet.ProfileValue" android:text="abdgfx@gmail.com" />
+                    </LinearLayout>
+                    <TextView style="@style/Widget.Wallet.ProfileEdit" android:text="Edit" />
+                </LinearLayout>
+                <View style="@style/Widget.Wallet.Divider" />
+                <LinearLayout style="@style/Widget.Wallet.ProfileRow" android:orientation="horizontal">
+                    <ImageView style="@style/Widget.Wallet.MenuIcon" android:src="@drawable/ic_profile_password" />
+                    <TextView style="@style/Widget.Wallet.ProfileContent" android:gravity="center_vertical" android:text="Change password" android:textStyle="bold" />
+                    <ImageView style="@style/Widget.Wallet.ChevronImage" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>
