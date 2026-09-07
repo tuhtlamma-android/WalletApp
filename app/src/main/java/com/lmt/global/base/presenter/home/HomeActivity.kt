@@ -2,6 +2,7 @@ package com.lmt.global.base.presenter.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.lmt.global.base.R
 import com.lmt.global.base.databinding.ActivityHomeBinding
@@ -42,8 +43,14 @@ class HomeActivity : WalletBaseActivity<ActivityHomeBinding>() {
         ).forEach { (view, tab) -> view.isSelected = tab == position }
 
         if (position == HomePagerAdapter.HOME) {
+            viewBinding.root.setBackgroundColor(
+                ContextCompat.getColor(this@HomeActivity, R.color.wallet_purple_dark)
+            )
             applyStatusBarStyle(R.color.wallet_purple_dark, darkIcons = false)
         } else {
+            viewBinding.root.setBackgroundColor(
+                ContextCompat.getColor(this@HomeActivity, R.color.white)
+            )
             applyStatusBarStyle(R.color.white, darkIcons = true)
         }
     }

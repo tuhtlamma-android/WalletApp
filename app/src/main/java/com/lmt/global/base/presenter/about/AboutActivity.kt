@@ -8,5 +8,7 @@ import com.lmt.global.base.presenter.wallet.WalletBaseActivity
 class AboutActivity : WalletBaseActivity<ActivityAboutBinding>() {
     override fun provideLayout() = R.layout.activity_about
     override fun initViews(savedInstanceState: Bundle?) = Unit
-    override fun initListeners() = Unit
+    override fun initListeners() {
+        viewBinding.backButton.setOnClickListener { finish() }
+    }
 }

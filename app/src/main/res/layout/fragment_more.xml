@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data />
-    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/white" android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
         <TextView style="@style/TextAppearance.Wallet.Display" android:layout_width="match_parent" android:layout_height="60dp" android:gravity="center_vertical" android:paddingStart="16dp" android:paddingEnd="16dp" android:text="@string/more" />
 
         <LinearLayout android:id="@+id/payBillsButton" style="@style/Widget.Wallet.MenuRow" android:orientation="horizontal">
@@ -54,4 +61,5 @@
             <ImageView style="@style/Widget.Wallet.ChevronImage" />
         </LinearLayout>
     </LinearLayout>
+    </ScrollView>
 </layout>

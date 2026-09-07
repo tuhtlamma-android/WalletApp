@@ -41,9 +41,18 @@
             android:background="@color/wallet_surface_alt"
             android:columnCount="3"
             android:rowCount="4">
-            <TextView android:id="@+id/key1" style="@style/Widget.Wallet.Key" android:text="1" />
-            <TextView android:id="@+id/key2" style="@style/Widget.Wallet.Key" android:text="2" />
-            <TextView android:id="@+id/key3" style="@style/Widget.Wallet.Key" android:text="3" />
+            <TextView
+                android:id="@+id/key1"
+                style="@style/Widget.Wallet.Key"
+                android:text="1" />
+            <TextView
+                android:id="@+id/key2"
+                style="@style/Widget.Wallet.Key"
+                android:text="2" />
+            <TextView
+                android:id="@+id/key3"
+                style="@style/Widget.Wallet.Key"
+                android:text="3" />
             <TextView android:id="@+id/key4" style="@style/Widget.Wallet.Key" android:text="4" />
             <TextView android:id="@+id/key5" style="@style/Widget.Wallet.Key" android:text="5" />
             <TextView android:id="@+id/key6" style="@style/Widget.Wallet.Key" android:text="6" />

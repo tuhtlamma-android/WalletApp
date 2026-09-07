@@ -5,6 +5,10 @@ import android.content.ContextWrapper
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Bundle
+import android.view.View
+import android.view.ViewTreeObserver
+import android.widget.EditText
+import android.widget.ScrollView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.CallSuper
@@ -18,6 +22,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.widget.NestedScrollView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -46,6 +51,9 @@ abstract class IActivity<VB : ViewDataBinding, VM : IViewModel<*>> : AppCompatAc
     }
 
     private var onPerformBackPressed: OnPerformBackPressed? = null
+    private var imeInsetBottom = 0
+    private var insetRoot: View? = null
+    private var focusChangeListener: ViewTreeObserver.OnGlobalFocusChangeListener? = null
     private var onBackPressedCallback = object : OnBackPressedCallback(enabled = true) {
         override fun handleOnBackPressed() {
             onPerformBackPressed?.invoke()
@@ -80,7 +88,7 @@ abstract class IActivity<VB : ViewDataBinding, VM : IViewModel<*>> : AppCompatAc
         )
         registerBackPressedDispatcher()
         viewBinding.lifecycleOwner = this@IActivity
-        applyTopSafeInset()
+        applySafeInsets()
 
         initViews(savedInstanceState)
         initObservers()
@@ -107,7 +115,7 @@ abstract class IActivity<VB : ViewDataBinding, VM : IViewModel<*>> : AppCompatAc
     protected open fun isHideSystemBars(): Boolean = false
     protected open fun usesDarkStatusBarIcons(): Boolean = true
 
-    private fun applyTopSafeInset() {
+    private fun applySafeInsets() {
         if (isHideSystemBars()) return
 
         val root = viewBinding.root
@@ -116,20 +124,71 @@ abstract class IActivity<VB : ViewDataBinding, VM : IViewModel<*>> : AppCompatAc
         val initialPaddingRight = root.paddingRight
         val initialPaddingBottom = root.paddingBottom
 
+        insetRoot = root
+        focusChangeListener = ViewTreeObserver.OnGlobalFocusChangeListener { _, newFocus ->
+            keepFocusedInputAboveKeyboard(newFocus, root, imeInsetBottom)
+        }.also(root.viewTreeObserver::addOnGlobalFocusChangeListener)
+
         ViewCompat.setOnApplyWindowInsetsListener(root) { view, insets ->
             val safeTop = insets.getInsets(
                 WindowInsetsCompat.Type.statusBars() or
                     WindowInsetsCompat.Type.displayCutout()
             ).top
+            val isImeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
+            val imeBottom = if (isImeVisible) {
+                insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
+            } else {
+                0
+            }
+            imeInsetBottom = imeBottom
             view.setPadding(
                 initialPaddingLeft,
                 initialPaddingTop + safeTop,
                 initialPaddingRight,
-                initialPaddingBottom
+                initialPaddingBottom + imeBottom
             )
+            keepFocusedInputAboveKeyboard(currentFocus, root, imeBottom)
             insets
         }
         ViewCompat.requestApplyInsets(root)
+    }
+
+    private fun keepFocusedInputAboveKeyboard(
+        focusedView: View?,
+        root: View,
+        imeBottom: Int
+    ) {
+        if (focusedView !is EditText || imeBottom <= 0) return
+
+        root.post {
+            if (!focusedView.isAttachedToWindow || !focusedView.hasFocus()) return@post
+
+            val rootLocation = IntArray(2)
+            val inputLocation = IntArray(2)
+            root.getLocationOnScreen(rootLocation)
+            focusedView.getLocationOnScreen(inputLocation)
+
+            val gapAboveKeyboard = (KEYBOARD_INPUT_GAP_DP * resources.displayMetrics.density).toInt()
+            val visibleBottom = rootLocation[1] + root.height - imeBottom - gapAboveKeyboard
+            val inputBottom = inputLocation[1] + focusedView.height
+            val overlap = inputBottom - visibleBottom
+            if (overlap <= 0) return@post
+
+            var ancestor: View? = focusedView.parent as? View
+            while (ancestor != null) {
+                when (ancestor) {
+                    is ScrollView -> {
+                        ancestor.smoothScrollBy(0, overlap)
+                        return@post
+                    }
+                    is NestedScrollView -> {
+                        ancestor.smoothScrollBy(0, overlap)
+                        return@post
+                    }
+                }
+                ancestor = ancestor.parent as? View
+            }
+        }
     }
 
     protected fun applyStatusBarStyle(@ColorRes color: Int, darkIcons: Boolean) {
@@ -204,6 +263,17 @@ abstract class IActivity<VB : ViewDataBinding, VM : IViewModel<*>> : AppCompatAc
         super.onStart()
     }
 
+    override fun onDestroy() {
+        val root = insetRoot
+        val listener = focusChangeListener
+        if (root != null && listener != null && root.viewTreeObserver.isAlive) {
+            root.viewTreeObserver.removeOnGlobalFocusChangeListener(listener)
+        }
+        focusChangeListener = null
+        insetRoot = null
+        super.onDestroy()
+    }
+
     protected fun postHideSystemBar() {
         window.decorView.postDelayed({
             WindowInsetsControllerCompat(window, window.decorView).let { controller ->
@@ -215,5 +285,9 @@ abstract class IActivity<VB : ViewDataBinding, VM : IViewModel<*>> : AppCompatAc
                 }
             }
         }, 50L)
+    }
+
+    private companion object {
+        const val KEYBOARD_INPUT_GAP_DP = 12
     }
 }
