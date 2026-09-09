@@ -1,5 +1,8 @@
 package com.lmt.global.base.presenter.wallet
 
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.RelativeSizeSpan
 import androidx.annotation.DrawableRes
 import com.lmt.global.base.R
 import com.lmt.global.base.data.entity.RecipientEntity
@@ -21,6 +24,21 @@ object WalletMoney {
 
     fun format(amountMinor: Long): String = NumberFormat.getCurrencyInstance(Locale.US)
         .format(BigDecimal.valueOf(amountMinor, 2))
+
+    fun formatMainBalance(amountMinor: Long): CharSequence {
+        val formatted = format(amountMinor)
+        val decimalStart = formatted.lastIndexOf('.')
+        return SpannableString(formatted).apply {
+            if (decimalStart >= 0) {
+                setSpan(
+                    RelativeSizeSpan(0.5f),
+                    decimalStart,
+                    length,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+        }
+    }
 }
 
 object WalletVisuals {

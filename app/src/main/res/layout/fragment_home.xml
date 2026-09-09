@@ -36,7 +36,7 @@
                         android:lineSpacingExtra="2dp"
                         android:text="@string/hello_abdullah"
                         android:textColor="@color/white"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
                     <ImageView
                         android:id="@+id/profileButton"
@@ -62,8 +62,8 @@
                         android:fontFamily="@font/sora_family"
                         android:includeFontPadding="false"
                         android:text="@string/main_balance"
-                        android:textColor="#C9BDF0"
-                        android:textSize="13sp" />
+                        android:textColor="@color/wallet_balance_label"
+                        android:textSize="12sp" />
                     <TextView
                         android:id="@+id/balanceText"
                         android:layout_width="wrap_content"

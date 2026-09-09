@@ -34,8 +34,7 @@
                 android:layout_marginTop="16dp"
                 android:lineSpacingExtra="5dp"
                 android:text="@string/about_body"
-                android:textColor="@color/wallet_black_coral"
-                android:textSize="13sp" />
+                android:textColor="@color/wallet_black_coral" />
         </LinearLayout>
     </ScrollView>
 </layout>

@@ -23,10 +23,10 @@
             android:paddingEnd="16dp">
             <ImageView android:id="@+id/merchantIcon" android:layout_width="32dp" android:layout_height="32dp" android:contentDescription="@null" />
             <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:layout_weight="1" android:orientation="vertical">
-                <TextView android:id="@+id/merchantText" style="@style/TextAppearance.Wallet.Section" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:id="@+id/merchantText" style="@style/TextAppearance.Wallet.ItemTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" />
                 <TextView android:id="@+id/dateText" style="@style/TextAppearance.Wallet.Body" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/wallet_slate" />
             </LinearLayout>
-            <TextView android:id="@+id/amountText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="13sp" />
+            <TextView android:id="@+id/amountText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@font/sora_family" android:textSize="12sp" />
             <ImageView style="@style/Widget.Wallet.ChevronImage" />
         </LinearLayout>
         <View style="@style/Widget.Wallet.Divider" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" />

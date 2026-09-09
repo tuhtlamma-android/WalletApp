@@ -6,7 +6,7 @@
         <TextView style="@style/TextAppearance.Wallet.Display" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:text="@string/transfer_to" />
         <LinearLayout android:id="@+id/newContactButton" android:layout_width="match_parent" android:layout_height="96dp" android:layout_marginTop="28dp" android:gravity="center_vertical" android:orientation="horizontal">
             <ImageView android:layout_width="48dp" android:layout_height="48dp" android:contentDescription="@null" android:src="@drawable/ic_add_contact" />
-            <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="New contact" android:textColor="@color/wallet_black" android:textSize="13sp" />
+            <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="New contact" android:textColor="@color/wallet_black" />
         </LinearLayout>
         <LinearLayout android:layout_width="match_parent" android:layout_height="32dp" android:gravity="center_vertical" android:orientation="horizontal">
             <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" android:background="@color/wallet_alice_blue" />
@@ -22,12 +22,14 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:background="@null"
+                android:fontFamily="@font/sora_family"
                 android:hint="Search contact"
                 android:inputType="textPersonName"
                 android:maxLines="1"
                 android:padding="0dp"
+                android:textColor="@color/wallet_black"
                 android:textColorHint="@color/wallet_input_hint"
-                android:textSize="13sp" />
+                android:textSize="14sp" />
         </LinearLayout>
         <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
             <TextView

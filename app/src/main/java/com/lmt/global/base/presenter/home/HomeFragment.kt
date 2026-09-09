@@ -57,7 +57,8 @@ class HomeFragment : IFragment<FragmentHomeBinding, CommonViewModel>() {
                     walletViewModel.balance.collect { balance ->
                         viewBinding.balanceText.visibility =
                             if (balance == null) View.INVISIBLE else View.VISIBLE
-                        viewBinding.balanceText.text = balance?.let(WalletMoney::format).orEmpty()
+                        viewBinding.balanceText.text =
+                            balance?.let(WalletMoney::formatMainBalance) ?: ""
                     }
                 }
                 launch {

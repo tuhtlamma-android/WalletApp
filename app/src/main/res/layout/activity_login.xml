@@ -124,7 +124,7 @@
                     app:ccp_showFlag="true"
                     app:ccp_showNameCode="false"
                     app:ccp_showPhoneCode="true"
-                    app:ccp_textSize="13sp"
+                    app:ccp_textSize="14sp"
                     app:ccpDialog_allowSearch="true"
                     app:ccpDialog_showFlag="true"
                     app:ccpDialog_showNameCode="true"
@@ -144,7 +144,7 @@
                     android:padding="0dp"
                     android:textColor="@color/wallet_black"
                     android:textColorHint="@color/wallet_input_hint"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -158,7 +158,7 @@
                 android:gravity="end|center_vertical"
                 android:text="@string/create_account_prompt"
                 android:textColor="@color/wallet_blue"
-                android:textSize="11sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
 

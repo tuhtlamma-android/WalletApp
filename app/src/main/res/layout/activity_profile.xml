@@ -5,11 +5,11 @@
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
             <FrameLayout android:layout_width="match_parent" android:layout_height="52dp">
                 <TextView android:id="@+id/backButton" style="@style/Widget.Wallet.BackButton" android:layout_gravity="start|center_vertical" android:paddingStart="16dp" />
-                <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_gravity="center" android:gravity="center" android:text="@string/profile_settings" android:textSize="17sp" />
+                <TextView style="@style/TextAppearance.Wallet.DialogTitle" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_gravity="center" android:gravity="center" android:text="@string/profile_settings" />
             </FrameLayout>
             <ImageView android:layout_width="110dp" android:layout_height="112dp" android:layout_gravity="center_horizontal" android:layout_marginTop="16dp" android:contentDescription="@null" android:src="@drawable/img_profile_verified" />
-            <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center" android:text="Abdullah Ghatasheh" android:textSize="15sp" />
-            <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:gravity="center" android:text="Joined 2 years ago" android:textColor="@color/wallet_slate" android:textSize="13sp" />
+            <TextView style="@style/TextAppearance.Wallet.ItemTitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center" android:text="Abdullah Ghatasheh" />
+            <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:gravity="center" android:text="Joined 2 years ago" android:textColor="@color/wallet_slate" />
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="38dp" android:orientation="vertical" android:paddingStart="16dp" android:paddingEnd="16dp">
                 <LinearLayout style="@style/Widget.Wallet.ProfileRow" android:orientation="horizontal">
                     <ImageView style="@style/Widget.Wallet.MenuIcon" android:src="@drawable/ic_profile_name" />

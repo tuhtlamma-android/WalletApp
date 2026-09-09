@@ -13,16 +13,18 @@
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:background="@null"
+                    android:fontFamily="@font/sora_family"
                     android:hint="Value goes here"
                     android:inputType="text"
                     android:maxLines="1"
                     android:padding="0dp"
+                    android:textColor="@color/wallet_black"
                     android:textColorHint="@color/wallet_input_hint"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
             <LinearLayout android:id="@+id/filterButton" android:layout_width="88dp" android:layout_height="37dp" android:layout_marginStart="8dp" android:background="@drawable/bg_wallet_outline" android:gravity="center" android:orientation="horizontal">
                 <ImageView android:layout_width="22dp" android:layout_height="22dp" android:contentDescription="@null" android:src="@drawable/ic_wallet_filter" />
-                <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="6dp" android:text="Filter" android:textColor="@color/wallet_black" android:textSize="13sp" />
+                <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="6dp" android:text="Filter" android:textColor="@color/wallet_black" android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
         <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">

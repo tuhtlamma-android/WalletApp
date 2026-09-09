@@ -3,10 +3,10 @@
     <LinearLayout android:layout_width="match_parent" android:layout_height="61dp" android:gravity="center_vertical" android:orientation="horizontal">
         <ImageView android:layout_width="32dp" android:layout_height="32dp" android:contentDescription="@null" android:src="@drawable/img_merchant_top_up" />
         <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:layout_weight="1" android:orientation="vertical">
-            <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Top up" />
+            <TextView style="@style/TextAppearance.Wallet.ItemTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Top up" />
             <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yesterday 02:12" android:textColor="@color/wallet_slate" />
         </LinearLayout>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+$430.00" android:textColor="@color/wallet_success" android:textSize="13sp" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@font/sora_family" android:text="+$430.00" android:textColor="@color/wallet_success" android:textSize="12sp" />
         <ImageView style="@style/Widget.Wallet.ChevronImage" />
     </LinearLayout>
 </merge>

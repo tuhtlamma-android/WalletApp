@@ -31,7 +31,7 @@
     <style name="TextAppearance.Wallet.Title" parent="">
         <item name="android:fontFamily">@font/sora_family</item>
         <item name="android:textColor">@color/wallet_black</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">21sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -45,7 +45,26 @@
     <style name="TextAppearance.Wallet.Body" parent="">
         <item name="android:fontFamily">@font/sora_family</item>
         <item name="android:textColor">@color/wallet_black_coral</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextAppearance.Wallet.DialogTitle" parent="TextAppearance.Wallet.Title">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextAppearance.Wallet.ItemTitle" parent="TextAppearance.Wallet.Section">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextAppearance.Wallet.Subtitle" parent="TextAppearance.Wallet.Body">
+        <item name="android:textColor">@color/wallet_slate</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.Wallet.Link" parent="TextAppearance.Wallet.Body">
+        <item name="android:textColor">@color/wallet_blue</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextAppearance.Wallet.Caption" parent="">
@@ -76,7 +95,7 @@
         <item name="android:paddingEnd">12dp</item>
         <item name="android:textColor">@color/wallet_black</item>
         <item name="android:textColorHint">@color/wallet_input_hint</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="Widget.Wallet.BackButton" parent="">
@@ -89,7 +108,7 @@
         <item name="android:paddingStart">0dp</item>
         <item name="android:text">@string/back_arrow</item>
         <item name="android:textColor">@color/wallet_blue</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -110,7 +129,7 @@
         <item name="android:fontFamily">@font/sora_family</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/wallet_black</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">21sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -268,7 +287,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/wallet_blue</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="Widget.Wallet.MenuRow" parent="">
@@ -291,7 +310,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">8dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="Widget.Wallet.Divider" parent="">
