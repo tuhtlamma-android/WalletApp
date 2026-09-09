@@ -27,7 +27,7 @@
             <ImageView style="@style/Widget.Wallet.ChevronImage" />
         </LinearLayout>
         <View style="@style/Widget.Wallet.Divider" />
-        <LinearLayout style="@style/Widget.Wallet.ListRow">
+        <LinearLayout android:id="@+id/waterBillerButton" style="@style/Widget.Wallet.ListRow">
             <ImageView style="@style/Widget.Wallet.MenuIcon" android:src="@drawable/ic_biller_water" />
             <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:layout_weight="1" android:orientation="vertical">
                 <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Water" />
@@ -36,7 +36,7 @@
             <ImageView style="@style/Widget.Wallet.ChevronImage" />
         </LinearLayout>
         <View style="@style/Widget.Wallet.Divider" />
-        <LinearLayout style="@style/Widget.Wallet.ListRow">
+        <LinearLayout android:id="@+id/phoneBillerButton" style="@style/Widget.Wallet.ListRow">
             <ImageView style="@style/Widget.Wallet.MenuIcon" android:src="@drawable/ic_biller_phone" />
             <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:layout_weight="1" android:orientation="vertical">
                 <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Phone" />

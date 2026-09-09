@@ -1,6 +1,11 @@
 package com.lmt.global.base.presenter.transfer
 
 import android.os.Bundle
+import android.content.Intent
+import android.view.View
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lmt.global.base.R
@@ -8,32 +13,49 @@ import com.lmt.global.base.databinding.ActivityTransferListBinding
 import com.lmt.global.base.presenter.wallet.ContactAdapter
 import com.lmt.global.base.presenter.wallet.WalletBaseActivity
 import com.lmt.global.base.presenter.wallet.WalletContact
+import com.lmt.global.base.presenter.wallet.WalletViewModel
+import com.lmt.global.base.presenter.wallet.showRecipientInputDialog
+import com.lmt.global.base.presenter.wallet.toWalletContact
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TransferListActivity : WalletBaseActivity<ActivityTransferListBinding>() {
+    private val walletViewModel by viewModel<WalletViewModel>()
     private lateinit var contactAdapter: ContactAdapter
 
     override fun provideLayout() = R.layout.activity_transfer_list
 
     override fun initViews(savedInstanceState: Bundle?) = with(viewBinding) {
         contactList.layoutManager = LinearLayoutManager(this@TransferListActivity)
-        contactAdapter = ContactAdapter(contacts) { openPage(TransferAmountActivity::class.java) }
+        contactAdapter = ContactAdapter(
+            onClick = ::openTransferAmount,
+            onListChanged = { count -> emptyState.visibility = if (count == 0) View.VISIBLE else View.GONE }
+        )
         contactList.adapter = contactAdapter
         searchInput.doAfterTextChanged { contactAdapter.filter(it?.toString().orEmpty()) }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                walletViewModel.recentRecipients.collect { recipients ->
+                    contactAdapter.submitContacts(recipients.map { it.toWalletContact() })
+                }
+            }
+        }
         Unit
     }
 
     override fun initListeners() = with(viewBinding) {
         backButton.setOnClickListener { finish() }
-        newContactButton.setOnClickListener { openPage(TransferAmountActivity::class.java) }
+        newContactButton.setOnClickListener {
+            showRecipientInputDialog(this@TransferListActivity) { name, avatarKey ->
+                openTransferAmount(WalletContact(0L, avatarKey, name))
+            }
+        }
     }
 
-    private val contacts by lazy {
-        listOf(
-            WalletContact(R.drawable.img_avatar_ali, "Ali Ahmed", "+1-300-555-0161", "Frequent contacts"),
-            WalletContact(R.drawable.img_avatar_steve, "Steve Gates", "+1-300-555-0119"),
-            WalletContact(R.drawable.img_avatar_ahmed, "Elon Jobs", "+1-202-555-0171"),
-            WalletContact(R.drawable.img_avatar_ali, "Ali Ahmed", "+1-300-555-0161", "All contacts"),
-            WalletContact(R.drawable.img_avatar_steve, "Steve Gates", "+1-300-555-0119")
-        )
+    private fun openTransferAmount(contact: WalletContact) {
+        startActivity(Intent(this, TransferAmountActivity::class.java).apply {
+            putExtra(TransferAmountActivity.EXTRA_RECIPIENT_NAME, contact.name)
+            putExtra(TransferAmountActivity.EXTRA_AVATAR_KEY, contact.avatarKey)
+        })
     }
 }

@@ -3,11 +3,11 @@
     <data />
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@color/white" android:orientation="vertical" android:padding="16dp">
         <LinearLayout android:layout_width="match_parent" android:layout_height="56dp" android:gravity="center_vertical" android:orientation="horizontal">
-            <ImageView android:layout_width="56dp" android:layout_height="56dp" android:contentDescription="@null" android:src="@drawable/ic_biller_electricity" />
-            <TextView style="@style/TextAppearance.Wallet.Title" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:layout_weight="1" android:text="Electricity\nUtility" android:textSize="16sp" />
+            <ImageView android:id="@+id/billerIcon" android:layout_width="56dp" android:layout_height="56dp" android:contentDescription="@null" android:src="@drawable/ic_biller_electricity" />
+            <TextView android:id="@+id/billerNameText" style="@style/TextAppearance.Wallet.Title" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:layout_weight="1" android:textSize="16sp" />
             <TextView android:id="@+id/doneButton" android:layout_width="56dp" android:layout_height="match_parent" android:gravity="center" android:text="@string/done" android:textColor="@color/wallet_blue" android:textSize="12sp" android:textStyle="bold" />
         </LinearLayout>
-        <TextView android:layout_width="match_parent" android:layout_height="64dp" android:layout_marginTop="24dp" android:background="@drawable/bg_wallet_error_soft" android:gravity="center" android:text="Due: $132.32" android:textColor="@color/wallet_error" android:textSize="20sp" android:textStyle="bold" />
+        <TextView android:id="@+id/dueAmountText" android:layout_width="match_parent" android:layout_height="64dp" android:layout_marginTop="24dp" android:background="@drawable/bg_wallet_error_soft" android:gravity="center" android:textColor="@color/wallet_error" android:textSize="20sp" android:textStyle="bold" />
         <TextView style="@style/Widget.Wallet.DetailBox" android:text="Due date\nDecember 29, 2022 – 12:32" />
         <TextView style="@style/Widget.Wallet.DetailBox" android:text="Registration no.\n23010412432431" />
         <com.google.android.material.button.MaterialButton android:id="@+id/securePaymentButton" style="@style/Widget.Wallet.PrimaryButton" android:layout_width="match_parent" android:layout_marginTop="24dp" android:backgroundTint="@color/wallet_mango" android:text="Secure payment" android:textColor="@color/wallet_purple_dark" app:icon="@drawable/ic_wallet_secure" app:iconGravity="textStart" app:iconSize="18dp" app:iconTint="@null" />

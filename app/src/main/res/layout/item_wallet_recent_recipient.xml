@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data />
+    <LinearLayout
+        android:layout_width="72dp"
+        android:layout_height="104dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="4dp">
+        <ImageView
+            android:id="@+id/avatarImage"
+            style="@style/Widget.Wallet.AvatarImage"
+            android:contentDescription="@null" />
+        <TextView
+            android:id="@+id/nameText"
+            style="@style/Widget.Wallet.AvatarName"
+            android:ellipsize="end"
+            android:maxLines="2" />
+    </LinearLayout>
+</layout>

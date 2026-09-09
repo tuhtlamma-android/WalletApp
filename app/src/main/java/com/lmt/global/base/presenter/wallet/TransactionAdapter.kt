@@ -4,31 +4,52 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.lmt.global.base.R
 import com.lmt.global.base.databinding.ItemWalletTransactionBinding
 
 class TransactionAdapter(
-    items: List<WalletTransaction>,
-    private val onClick: (WalletTransaction) -> Unit = {}
-) : RecyclerView.Adapter<TransactionAdapter.Holder>() {
+    private val showSections: Boolean = false,
+    private val onClick: (WalletTransaction) -> Unit = {},
+    private val onListChanged: (Int) -> Unit = {}
+) : ListAdapter<WalletTransaction, TransactionAdapter.Holder>(DiffCallback) {
 
-    private val sourceItems = items.toList()
-    private val visibleItems = items.toMutableList()
+    private var sourceItems = emptyList<WalletTransaction>()
+    private var query = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = Holder(
         ItemWalletTransactionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
-    override fun onBindViewHolder(holder: Holder, position: Int) = holder.bind(visibleItems[position])
-    override fun getItemCount() = visibleItems.size
+    override fun onBindViewHolder(holder: Holder, position: Int) = holder.bind(getItem(position))
+
+    fun submitTransactions(items: List<WalletTransaction>) {
+        sourceItems = items
+        applyFilter()
+    }
 
     fun filter(query: String) {
-        visibleItems.clear()
-        visibleItems += if (query.isBlank()) sourceItems else sourceItems.filter {
-            it.merchant.contains(query, ignoreCase = true) || it.date.contains(query, ignoreCase = true)
+        this.query = query
+        applyFilter()
+    }
+
+    private fun applyFilter() {
+        val filtered = if (query.isBlank()) sourceItems else sourceItems.filter {
+            it.merchant.contains(query, ignoreCase = true) ||
+                walletDateTime(it.createdAt).contains(query, ignoreCase = true)
         }
-        notifyDataSetChanged()
+        val visibleItems = if (showSections) {
+            filtered.mapIndexed { index, item ->
+                val currentSection = walletSection(item.createdAt)
+                val previousSection = filtered.getOrNull(index - 1)?.let { walletSection(it.createdAt) }
+                item.copy(sectionLabel = currentSection.takeIf { it != previousSection })
+            }
+        } else {
+            filtered.map { it.copy(sectionLabel = null) }
+        }
+        submitList(visibleItems) { onListChanged(visibleItems.size) }
     }
 
     inner class Holder(private val binding: ItemWalletTransactionBinding) :
@@ -36,14 +57,22 @@ class TransactionAdapter(
         fun bind(item: WalletTransaction) = with(binding) {
             sectionText.visibility = if (item.sectionLabel == null) View.GONE else View.VISIBLE
             sectionText.text = item.sectionLabel
-            merchantIcon.setImageResource(item.iconRes)
+            merchantIcon.setImageResource(WalletVisuals.iconRes(item.iconKey))
             merchantText.text = item.merchant
-            dateText.text = item.date
-            amountText.text = item.amount
+            dateText.text = walletDateTime(item.createdAt)
+            amountText.text = "-${WalletMoney.format(item.amountMinor)}"
             amountText.setTextColor(
-                ContextCompat.getColor(root.context, if (item.incoming) R.color.wallet_success else R.color.wallet_error)
+                ContextCompat.getColor(root.context, R.color.wallet_error)
             )
             transactionRow.setOnClickListener { onClick(item) }
         }
+    }
+
+    private object DiffCallback : DiffUtil.ItemCallback<WalletTransaction>() {
+        override fun areItemsTheSame(oldItem: WalletTransaction, newItem: WalletTransaction) =
+            oldItem.id == newItem.id
+
+        override fun areContentsTheSame(oldItem: WalletTransaction, newItem: WalletTransaction) =
+            oldItem == newItem
     }
 }

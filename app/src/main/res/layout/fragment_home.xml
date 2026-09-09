@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data />
     <ScrollView
         android:layout_width="match_parent"
@@ -64,12 +65,13 @@
                         android:textColor="#C9BDF0"
                         android:textSize="13sp" />
                     <TextView
+                        android:id="@+id/balanceText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/sora_family"
                         android:includeFontPadding="false"
-                        android:text= "@string/balance_value"
+                        android:visibility="invisible"
                         android:textColor="@color/white"
                         android:textSize="36sp"
                         android:textStyle="bold" />
@@ -78,7 +80,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:orientation="horizontal">
-                        <LinearLayout style="@style/Widget.Wallet.BalanceAction"
+                        <LinearLayout
+                            android:id="@+id/topUpButton"
+                            style="@style/Widget.Wallet.BalanceAction"
                             android:orientation="vertical">
                             <ImageView style="@style/Widget.Wallet.BalanceActionIcon"
                                 android:src="@drawable/ic_balance_top_up" />
@@ -106,54 +110,50 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:paddingStart="16dp"
                 android:paddingTop="24dp"
                 android:paddingEnd="16dp">
                 <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/recent_transfers" />
-                <HorizontalScrollView android:layout_width="match_parent" android:layout_height="104dp" android:layout_marginTop="14dp" android:overScrollMode="never" android:scrollbars="none">
-                    <LinearLayout android:layout_width="wrap_content" android:layout_height="match_parent" android:orientation="horizontal">
-                        <LinearLayout android:id="@+id/addContactButton" style="@style/Widget.Wallet.AvatarColumn">
-                            <ImageView style="@style/Widget.Wallet.AvatarImage" android:src="@drawable/ic_add_contact" />
-                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Add" />
-                        </LinearLayout>
-                        <LinearLayout style="@style/Widget.Wallet.AvatarColumn">
-                            <ImageView style="@style/Widget.Wallet.AvatarImage" android:src="@drawable/img_avatar_ali" />
-                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Anh Trung" />
-                        </LinearLayout>
-                        <LinearLayout style="@style/Widget.Wallet.AvatarColumn">
-                            <ImageView style="@style/Widget.Wallet.AvatarImage" android:src="@drawable/img_avatar_steve" />
-                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Anh An" />
-                        </LinearLayout>
-                        <LinearLayout style="@style/Widget.Wallet.AvatarColumn">
-                            <ImageView style="@style/Widget.Wallet.AvatarImage" android:src="@drawable/img_avatar_ahmed" />
-                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Anh Nghia" />
-                        </LinearLayout>
-                        <LinearLayout style="@style/Widget.Wallet.AvatarColumn">
-                            <ImageView style="@style/Widget.Wallet.AvatarImage" android:src="@drawable/img_avatar_ali" />
-                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Anh Trung" />
-                        </LinearLayout>
-                        <LinearLayout style="@style/Widget.Wallet.AvatarColumn">
-                            <ImageView style="@style/Widget.Wallet.AvatarImage" android:src="@drawable/img_avatar_ali" />
-                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Anh Trung" />
-                        </LinearLayout><LinearLayout style="@style/Widget.Wallet.AvatarColumn">
-                            <ImageView style="@style/Widget.Wallet.AvatarImage" android:src="@drawable/img_avatar_ali" />
-                            <TextView style="@style/Widget.Wallet.AvatarName" android:text="Anh Trung" />
-                        </LinearLayout>
-
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="104dp"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal">
+                    <LinearLayout android:id="@+id/addContactButton" style="@style/Widget.Wallet.AvatarColumn">
+                        <ImageView style="@style/Widget.Wallet.AvatarImage" android:src="@drawable/ic_add_contact" />
+                        <TextView style="@style/Widget.Wallet.AvatarName" android:text="Add" />
                     </LinearLayout>
-                </HorizontalScrollView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recentTransferList"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:orientation="horizontal" />
+                </LinearLayout>
                 <LinearLayout android:layout_width="match_parent" android:layout_height="38dp" android:gravity="center_vertical" android:orientation="horizontal">
                     <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/latest_transactions" />
                     <TextView android:id="@+id/viewAllButton" style="@style/TextAppearance.Wallet.Body" android:layout_width="wrap_content" android:layout_height="match_parent" android:gravity="center" android:text="@string/view_all" android:textColor="@color/wallet_slate" />
                 </LinearLayout>
-                <include layout="@layout/item_home_walmart" />
-                <View style="@style/Widget.Wallet.Divider" />
-                <include layout="@layout/item_home_top_up" />
-                <View style="@style/Widget.Wallet.Divider" />
-                <include layout="@layout/item_home_netflix" />
+                <TextView
+                    android:id="@+id/latestEmptyState"
+                    style="@style/TextAppearance.Wallet.Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:gravity="center"
+                    android:text="@string/no_transactions_yet"
+                    android:textColor="@color/wallet_slate" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/latestTransactionList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

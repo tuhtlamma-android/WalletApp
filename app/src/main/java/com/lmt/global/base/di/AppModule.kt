@@ -8,10 +8,12 @@ import androidx.fragment.app.FragmentActivity
 import androidx.room.Room
 import com.lmt.global.base.common.CommonViewModel
 import com.lmt.global.base.data.AppDatabase
+import com.lmt.global.base.data.WalletRepository
 import com.lmt.global.base.helper.firebase.RemoteConfigManagement
 import com.lmt.global.base.helper.permission.IPermission
 import com.lmt.global.base.helper.permission.PermissionImpl
 import com.lmt.global.base.helper.preferences.AppSharedPreferences
+import com.lmt.global.base.presenter.wallet.WalletViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.remoteconfig.remoteConfig
 import org.koin.core.module.Module
@@ -59,6 +61,7 @@ private fun databaseFeature() = object : Feature {
                 .fallbackToDestructiveMigration()
                 .build()
         }
+        single { WalletRepository(get()) }
     }
 }
 
@@ -66,5 +69,6 @@ private fun viewModels() = object : Feature {
     override fun name() = "viewmodel"
     override fun diModule() = module {
         viewModelOf(::CommonViewModel)
+        viewModelOf(::WalletViewModel)
     }
 }

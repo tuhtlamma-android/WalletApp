@@ -1,20 +1,20 @@
 package com.lmt.global.base.presenter.wallet
 
-import androidx.annotation.DrawableRes
-
 data class WalletTransaction(
-    @DrawableRes val iconRes: Int,
+    val id: Long,
+    val iconKey: String,
     val merchant: String,
-    val date: String,
-    val amount: String,
-    val incoming: Boolean = false,
+    val createdAt: Long,
+    val amountMinor: Long,
+    val type: String,
     val sectionLabel: String? = null
 )
 
 data class WalletContact(
-    @DrawableRes val avatarRes: Int,
+    val id: Long,
+    val avatarKey: String,
     val name: String,
-    val phone: String,
+    val phone: String = "",
     val sectionLabel: String? = null
 )
 

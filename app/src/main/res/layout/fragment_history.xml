@@ -25,14 +25,23 @@
                 <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="6dp" android:text="Filter" android:textColor="@color/wallet_black" android:textSize="13sp" />
             </LinearLayout>
         </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/transactionList"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:paddingBottom="8dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+            <TextView
+                android:id="@+id/emptyState"
+                style="@style/TextAppearance.Wallet.Body"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_transactions_yet"
+                android:textColor="@color/wallet_slate" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/transactionList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:paddingBottom="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        </FrameLayout>
     </LinearLayout>
 </layout>

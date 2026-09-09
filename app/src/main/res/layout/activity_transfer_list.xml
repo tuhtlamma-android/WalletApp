@@ -29,6 +29,16 @@
                 android:textColorHint="@color/wallet_input_hint"
                 android:textSize="13sp" />
         </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView android:id="@+id/contactList" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:overScrollMode="never" app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+            <TextView
+                android:id="@+id/emptyState"
+                style="@style/TextAppearance.Wallet.Body"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_recipients_yet"
+                android:textColor="@color/wallet_slate" />
+            <androidx.recyclerview.widget.RecyclerView android:id="@+id/contactList" android:layout_width="match_parent" android:layout_height="match_parent" android:overScrollMode="never" app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        </FrameLayout>
     </LinearLayout>
 </layout>

@@ -27,9 +27,9 @@ abstract class WalletBaseActivity<VB : ViewDataBinding> : IActivity<VB, CommonVi
         startActivity(Intent(this, target))
     }
 
-    protected fun copyTransactionNumber() {
+    protected fun copyTransactionNumber(transactionNumber: String = TRANSACTION_NUMBER) {
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        clipboard.setPrimaryClip(ClipData.newPlainText("Transaction number", TRANSACTION_NUMBER))
+        clipboard.setPrimaryClip(ClipData.newPlainText("Transaction number", transactionNumber))
         Toast.makeText(this, R.string.transaction_copied, Toast.LENGTH_SHORT).show()
     }
 
