@@ -1,5 +1,6 @@
 package com.lmt.global.base.presenter.bill
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import com.lmt.global.base.R
@@ -12,6 +13,9 @@ class BillListActivity : WalletBaseActivity<ActivityBillListBinding>() {
     override fun initViews(savedInstanceState: Bundle?) = Unit
     override fun initListeners() = with(viewBinding) {
         backButton.setOnClickListener { finish() }
+        newBillerButton.setOnClickListener {
+            startActivity(Intent(this@BillListActivity, NewBillerActivity::class.java))
+        }
         billerButton.setOnClickListener {
             showBill("Electricity", WalletVisuals.BILL_ELECTRICITY, 13_232L)
         }

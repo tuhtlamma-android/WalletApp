@@ -6,14 +6,16 @@ import com.lmt.global.base.data.dao.WalletDao
 import com.lmt.global.base.data.entity.RecipientEntity
 import com.lmt.global.base.data.entity.TransactionEntity
 import com.lmt.global.base.data.entity.WalletEntity
+import com.lmt.global.base.data.entity.CardEntity
 
 @Database(
     entities = [
         WalletEntity::class,
         RecipientEntity::class,
-        TransactionEntity::class
+        TransactionEntity::class,
+        CardEntity::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

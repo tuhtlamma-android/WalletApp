@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.room.Room
 import com.lmt.global.base.common.CommonViewModel
 import com.lmt.global.base.data.AppDatabase
+import com.lmt.global.base.data.DatabaseMigrations
 import com.lmt.global.base.data.WalletRepository
 import com.lmt.global.base.helper.firebase.RemoteConfigManagement
 import com.lmt.global.base.helper.permission.IPermission
@@ -58,7 +59,7 @@ private fun databaseFeature() = object : Feature {
     override fun diModule() = module {
         single {
             Room.databaseBuilder(get(), AppDatabase::class.java, AppDatabase.DATABASE_NAME)
-                .fallbackToDestructiveMigration()
+                .addMigrations(DatabaseMigrations.MIGRATION_2_3)
                 .build()
         }
         single { WalletRepository(get()) }

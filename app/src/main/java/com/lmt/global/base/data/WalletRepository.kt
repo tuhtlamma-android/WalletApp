@@ -4,6 +4,7 @@ import androidx.room.withTransaction
 import com.lmt.global.base.data.entity.RecipientEntity
 import com.lmt.global.base.data.entity.TransactionEntity
 import com.lmt.global.base.data.entity.WalletEntity
+import com.lmt.global.base.data.entity.CardEntity
 import java.util.Locale
 
 class WalletRepository(private val database: AppDatabase) {
@@ -13,12 +14,49 @@ class WalletRepository(private val database: AppDatabase) {
     val recentRecipients = dao.observeRecentRecipients()
     val latestTransactions = dao.observeLatestTransactions(LATEST_TRANSACTION_LIMIT)
     val history = dao.observeHistory()
+    val cards = dao.observeCards()
+
+    fun card(cardId: String) = dao.observeCard(cardId)
 
     suspend fun addBalance(amountMinor: Long): WalletActionResult {
         if (amountMinor <= 0L) return WalletActionResult.InvalidAmount
         return database.withTransaction {
             ensureWallet()
             dao.addBalance(amountMinor)
+            WalletActionResult.Success()
+        }
+    }
+
+    suspend fun addCard(
+        cardId: String,
+        cardName: String,
+        cardNumber: String,
+        balanceMinor: Long
+    ): WalletActionResult {
+        val cleanId = cardId.trim().uppercase(Locale.ROOT)
+        val cleanName = cardName.trim().replace(Regex("\\s+"), " ")
+        val cleanNumber = cardNumber.filter(Char::isDigit)
+        val hasInvalidNumberCharacter = cardNumber.any { !it.isDigit() && !it.isWhitespace() }
+        if (
+            cleanId.isBlank() || cleanName.isBlank() || hasInvalidNumberCharacter ||
+            cleanNumber.length != CARD_NUMBER_LENGTH || balanceMinor < 0L
+        ) {
+            return WalletActionResult.InvalidCard
+        }
+
+        return database.withTransaction {
+            ensureWallet()
+            val inserted = dao.insertCard(
+                CardEntity(
+                    id = cleanId,
+                    name = cleanName,
+                    cardNumber = cleanNumber,
+                    balanceMinor = balanceMinor,
+                    createdAt = System.currentTimeMillis()
+                )
+            )
+            if (inserted == -1L) return@withTransaction WalletActionResult.DuplicateCard
+            if (balanceMinor > 0L) dao.addBalance(balanceMinor)
             WalletActionResult.Success()
         }
     }
@@ -93,6 +131,7 @@ class WalletRepository(private val database: AppDatabase) {
                     type = TransactionEntity.TYPE_PAY_BILL,
                     title = billerName.trim(),
                     iconKey = iconKey,
+                    billerType = iconKey,
                     amountMinor = amountMinor,
                     createdAt = System.currentTimeMillis()
                 )
@@ -107,6 +146,7 @@ class WalletRepository(private val database: AppDatabase) {
 
     companion object {
         private const val LATEST_TRANSACTION_LIMIT = 5
+        private const val CARD_NUMBER_LENGTH = 16
     }
 }
 
@@ -115,4 +155,6 @@ sealed interface WalletActionResult {
     data object InsufficientBalance : WalletActionResult
     data object InvalidAmount : WalletActionResult
     data object InvalidRecipient : WalletActionResult
+    data object InvalidCard : WalletActionResult
+    data object DuplicateCard : WalletActionResult
 }

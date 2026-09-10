@@ -90,6 +90,50 @@ class WalletRepositoryTest {
         assertTrue((result as WalletActionResult.Success).transactionId != null)
         assertEquals(86_768L, repository.balance.first())
         assertTrue(repository.recentRecipients.first().isEmpty())
-        assertEquals(TransactionEntity.TYPE_PAY_BILL, repository.history.first().single().type)
+        val transaction = repository.history.first().single()
+        assertEquals(TransactionEntity.TYPE_PAY_BILL, transaction.type)
+        assertEquals("bill_electricity", transaction.billerType)
+    }
+
+    @Test
+    fun addCards_persistsCardsAndAddsEachInitialBalance() = runBlocking {
+        repository.addBalance(100_000_000L)
+
+        val first = repository.addCard("CARD001", "Visa", "1234567812345678", 50_000_000L)
+        val second = repository.addCard("CARD002", "Mastercard", "9876543212345678", 20_000_000L)
+
+        assertTrue(first is WalletActionResult.Success)
+        assertTrue(second is WalletActionResult.Success)
+        assertEquals(2, repository.cards.first().size)
+        assertEquals(170_000_000L, repository.balance.first())
+    }
+
+    @Test
+    fun duplicateOrInvalidCard_changesNeitherCardsNorBalance() = runBlocking {
+        repository.addBalance(100_000_000L)
+        repository.addCard("CARD001", "Visa", "1234567812345678", 50_000_000L)
+
+        val duplicateId = repository.addCard("CARD001", "Other", "9876543212345678", 20_000_000L)
+        val duplicateNumber = repository.addCard("CARD002", "Other", "1234567812345678", 20_000_000L)
+        val invalid = repository.addCard("", "", "123", -1L)
+        val nonNumeric = repository.addCard("CARD003", "Other", "1234abcd567812345678", 20_000_000L)
+
+        assertEquals(WalletActionResult.DuplicateCard, duplicateId)
+        assertEquals(WalletActionResult.DuplicateCard, duplicateNumber)
+        assertEquals(WalletActionResult.InvalidCard, invalid)
+        assertEquals(WalletActionResult.InvalidCard, nonNumeric)
+        assertEquals(1, repository.cards.first().size)
+        assertEquals(150_000_000L, repository.balance.first())
+    }
+
+    @Test
+    fun billPayment_withInsufficientBalanceChangesNothing() = runBlocking {
+        repository.addBalance(100_000L)
+
+        val result = repository.payBill("Electricity", "bill_electricity", 100_001L)
+
+        assertEquals(WalletActionResult.InsufficientBalance, result)
+        assertEquals(100_000L, repository.balance.first())
+        assertTrue(repository.history.first().isEmpty())
     }
 }

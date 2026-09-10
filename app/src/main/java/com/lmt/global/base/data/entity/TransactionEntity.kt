@@ -23,6 +23,7 @@ data class TransactionEntity(
     val title: String,
     val recipientId: Long? = null,
     val iconKey: String,
+    val billerType: String? = null,
     val amountMinor: Long,
     val createdAt: Long
 ) {

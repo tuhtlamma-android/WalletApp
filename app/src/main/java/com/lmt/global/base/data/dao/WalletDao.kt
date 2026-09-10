@@ -8,6 +8,7 @@ import androidx.room.Update
 import com.lmt.global.base.data.entity.RecipientEntity
 import com.lmt.global.base.data.entity.TransactionEntity
 import com.lmt.global.base.data.entity.WalletEntity
+import com.lmt.global.base.data.entity.CardEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -32,6 +33,15 @@ interface WalletDao {
         amountMinor: Long,
         walletId: Int = WalletEntity.SINGLE_WALLET_ID
     ): Int
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertCard(card: CardEntity): Long
+
+    @Query("SELECT * FROM cards ORDER BY createdAt DESC, id ASC")
+    fun observeCards(): Flow<List<CardEntity>>
+
+    @Query("SELECT * FROM cards WHERE id = :cardId LIMIT 1")
+    fun observeCard(cardId: String): Flow<CardEntity?>
 
     @Query("SELECT * FROM recipients WHERE normalizedName = :normalizedName LIMIT 1")
     suspend fun findRecipient(normalizedName: String): RecipientEntity?
