@@ -125,6 +125,8 @@
                     <LinearLayout android:id="@+id/addContactButton" style="@style/Widget.Wallet.AvatarColumn">
                         <ImageView style="@style/Widget.Wallet.AvatarImage"
                             android:src="@drawable/ic_add_contact"
+                            android:background="@drawable/bg_add_contacts"
+                            android:scaleType="center"
                             />
                         <TextView style="@style/Widget.Wallet.AvatarName"
                             android:text="Add" />

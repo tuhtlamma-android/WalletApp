@@ -98,19 +98,24 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="Widget.Wallet.BackButton" parent="">
+    <style name="Widget.Wallet.BackButton.Base" parent="">
         <item name="android:layout_width">80dp</item>
         <item name="android:layout_height">52dp</item>
         <item name="android:fontFamily">@font/sora_family</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:drawableStart">@drawable/ic_wallet_back</item>
-        <item name="android:drawablePadding">8dp</item>
+        <item name="android:drawablePadding">2dp</item>
         <item name="android:paddingStart">0dp</item>
         <item name="android:text">@string/back_arrow</item>
         <item name="android:textColor">@color/wallet_blue</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style
+        name="Widget.Wallet.BackButton"
+        parent="Widget.Wallet.BackButton.Base" />
 
     <style name="Widget.Wallet.SocialButton" parent="">
         <item name="android:layout_width">0dp</item>

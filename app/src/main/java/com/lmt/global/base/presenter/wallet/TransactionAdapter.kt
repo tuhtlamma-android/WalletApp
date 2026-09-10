@@ -23,7 +23,8 @@ class TransactionAdapter(
         ItemWalletTransactionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
-    override fun onBindViewHolder(holder: Holder, position: Int) = holder.bind(getItem(position))
+    override fun onBindViewHolder(holder: Holder, position: Int) =
+        holder.bind(getItem(position), position)
 
     fun submitTransactions(items: List<WalletTransaction>) {
         sourceItems = items
@@ -54,7 +55,9 @@ class TransactionAdapter(
 
     inner class Holder(private val binding: ItemWalletTransactionBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: WalletTransaction) = with(binding) {
+        fun bind(item: WalletTransaction, position: Int) = with(binding) {
+            sectionDivider.visibility =
+                if (item.sectionLabel != null && position > 0) View.VISIBLE else View.GONE
             sectionText.visibility = if (item.sectionLabel == null) View.GONE else View.VISIBLE
             sectionText.text = item.sectionLabel
             merchantIcon.setImageResource(WalletVisuals.iconRes(item.iconKey))
