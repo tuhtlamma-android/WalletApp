@@ -121,15 +121,21 @@
                     android:layout_height="104dp"
                     android:layout_marginTop="14dp"
                     android:orientation="horizontal">
+
                     <LinearLayout android:id="@+id/addContactButton" style="@style/Widget.Wallet.AvatarColumn">
-                        <ImageView style="@style/Widget.Wallet.AvatarImage" android:src="@drawable/ic_add_contact" />
-                        <TextView style="@style/Widget.Wallet.AvatarName" android:text="Add" />
+                        <ImageView style="@style/Widget.Wallet.AvatarImage"
+                            android:src="@drawable/ic_add_contact"
+                            />
+                        <TextView style="@style/Widget.Wallet.AvatarName"
+                            android:text="Add" />
                     </LinearLayout>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recentTransferList"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:paddingEnd="16dp"
+                        android:clipToPadding="false"
                         android:overScrollMode="never"
                         android:scrollbars="none"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

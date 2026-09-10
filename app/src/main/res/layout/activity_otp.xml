@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data />
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,27 +13,51 @@
             <ImageView android:layout_width="89dp" android:layout_height="24dp" android:layout_gravity="center" android:contentDescription="@string/app_name" android:src="@drawable/img_text_screen" />
         </FrameLayout>
         <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:gravity="center" android:text="@string/sms_sent" android:textColor="@color/wallet_black" />
-        <TextView style="@style/TextAppearance.Wallet.Caption" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:gravity="center" android:text="@string/enter_six_digit_code" />
-        <LinearLayout android:layout_width="wrap_content" android:layout_height="64dp" android:layout_gravity="center_horizontal" android:gravity="center" android:orientation="horizontal">
+        <TextView style="@style/TextAppearance.Wallet.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/enter_six_digit_code" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="72dp">
+
             <EditText
                 android:id="@+id/otpInput"
                 android:layout_width="198dp"
-                android:layout_height="64dp"
+                android:layout_height="wrap_content"
+                android:minHeight="72dp"
                 android:backgroundTint="@color/wallet_purple"
                 android:gravity="center"
                 android:hint="XXX-XXX"
+                android:includeFontPadding="true"
                 android:inputType="text"
                 android:maxLength="7"
+                android:maxLines="1"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:textColor="@color/wallet_black"
                 android:textColorHint="@color/wallet_input_hint"
-                android:textSize="36sp" />
-            <ImageView android:id="@+id/validIcon"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/validIcon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="6dp"
-                android:contentDescription="@null" android:src="@drawable/ic_wallet_otp_valid"
-                android:visibility="gone" />
-        </LinearLayout>
+                android:contentDescription="@null"
+                android:src="@drawable/ic_wallet_otp_valid"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/otpInput"
+                app:layout_constraintStart_toEndOf="@id/otpInput"
+                app:layout_constraintTop_toTopOf="@id/otpInput" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView android:id="@+id/resendButton" style="@style/TextAppearance.Wallet.Link" android:layout_width="match_parent" android:layout_height="52dp" android:gravity="center" android:text="@string/resend_code" />
         <Space android:layout_width="1dp" android:layout_height="0dp" android:layout_weight="1" />
         <GridLayout
