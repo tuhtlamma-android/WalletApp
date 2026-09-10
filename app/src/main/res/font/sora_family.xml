@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <font-family xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Regular -->
     <font
         android:font="@font/sora_variable"
         android:fontStyle="normal"
         android:fontWeight="400" />
+
+    <!-- Medium -->
+    <font
+        android:font="@font/sora_variable"
+        android:fontStyle="normal"
+        android:fontWeight="500" />
+
+    <!-- SemiBold -->
     <font
         android:font="@font/sora_variable"
         android:fontStyle="normal"
         android:fontWeight="600" />
+
+    <!-- Bold -->
+    <font
+        android:font="@font/sora_variable"
+        android:fontStyle="normal"
+        android:fontWeight="700" />
+
 </font-family>

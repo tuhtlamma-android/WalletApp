@@ -5,7 +5,12 @@
         <TextView android:id="@+id/backButton" style="@style/Widget.Wallet.BackButton" />
         <TextView style="@style/TextAppearance.Wallet.Display" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:text="@string/transfer_to" />
         <LinearLayout android:id="@+id/newContactButton" android:layout_width="match_parent" android:layout_height="96dp" android:layout_marginTop="28dp" android:gravity="center_vertical" android:orientation="horizontal">
-            <ImageView android:layout_width="48dp" android:layout_height="48dp" android:contentDescription="@null" android:src="@drawable/ic_add_contact" />
+            <ImageView android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleType="center"
+                android:background="@drawable/bg_add_contacts"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_add_contact" />
             <TextView style="@style/TextAppearance.Wallet.Body" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="New contact" android:textColor="@color/wallet_black" />
         </LinearLayout>
         <LinearLayout android:layout_width="match_parent" android:layout_height="32dp" android:gravity="center_vertical" android:orientation="horizontal">

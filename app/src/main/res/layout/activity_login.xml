@@ -79,6 +79,7 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="3dp"
                 android:text="@string/enter_mobile_number"
+
                 android:textSize="21sp" />
 
 
