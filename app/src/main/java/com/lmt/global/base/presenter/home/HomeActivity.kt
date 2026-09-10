@@ -5,11 +5,13 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.lmt.global.base.R
+import com.lmt.global.base.common.IActivity
 import com.lmt.global.base.databinding.ActivityHomeBinding
-import com.lmt.global.base.presenter.wallet.WalletBaseActivity
+import com.lmt.global.base.extension.collectLatestRepeatOnLifecycle
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeActivity : WalletBaseActivity<ActivityHomeBinding>() {
-
+class HomeActivity : IActivity<ActivityHomeBinding, HomeViewModel>() {
+    override fun provideViewModel() = viewModel<HomeViewModel>()
     override fun provideLayout() = R.layout.activity_home
 
     override fun initViews(savedInstanceState: Bundle?) = with(viewBinding) {
@@ -52,6 +54,13 @@ class HomeActivity : WalletBaseActivity<ActivityHomeBinding>() {
                 ContextCompat.getColor(this@HomeActivity, R.color.white)
             )
             applyStatusBarStyle(R.color.white, darkIcons = true)
+        }
+    }
+
+    override fun initObservers() {
+        super.initObservers()
+        viewBinding.bottomNavigation.navHome.setOnClickListener {
+            viewModel.onState(HomeState.AddUser("dajshd"))
         }
     }
 

@@ -62,6 +62,7 @@ private fun databaseFeature() = object : Feature {
                 .addMigrations(DatabaseMigrations.MIGRATION_2_3)
                 .build()
         }
+        single { get<AppDatabase>().walletDao() }
         single { WalletRepository(get()) }
     }
 }
