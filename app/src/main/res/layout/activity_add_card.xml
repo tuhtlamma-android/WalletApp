@@ -29,7 +29,13 @@
             <EditText android:id="@+id/cardNameInput" style="@style/Widget.Wallet.Input" android:hint="@string/card_name_hint" android:imeOptions="actionNext" android:inputType="textPersonName|textCapWords" />
 
             <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="@string/card_number" />
-            <EditText android:id="@+id/cardNumberInput" style="@style/Widget.Wallet.Input" android:digits="0123456789 " android:hint="@string/card_number_hint" android:imeOptions="actionNext" android:inputType="phone" android:maxLength="19" />
+            <EditText android:id="@+id/cardNumberInput"
+                style="@style/Widget.Wallet.Input"
+                android:digits="0123456789 "
+                android:hint="@string/card_number_hint"
+                android:imeOptions="actionNext"
+                android:inputType="phone"
+                android:maxLength="16" />
 
             <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="@string/initial_balance" />
             <EditText android:id="@+id/balanceInput" style="@style/Widget.Wallet.Input" android:hint="@string/amount_input_hint" android:imeOptions="actionDone" android:inputType="numberDecimal" />

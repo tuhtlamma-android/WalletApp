@@ -12,6 +12,9 @@
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="enter_mobile_number">Enter your\nmobile number</string>
+    <string name="enter_identifier">Enter your email or\nmobile number</string>
+    <string name="email_or_mobile">Email or mobile number</string>
+    <string name="identifier_hint">email@example.com or phone</string>
     <string name="enter_password">Enter your password</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="forgot_your_password">Forgot your password?</string>
@@ -29,6 +32,7 @@
     <string name="more">More</string>
     <string name="hello_abdullah">Hello,\nAbdullah!</string>
     <string name="main_balance">Main balance</string>
+    <string name="zero_balance">$0.00</string>
     <string name="balance_value">$14,235.34</string>
     <string name="top_up">Top up</string>
     <string name="withdraw">Withdraw</string>
@@ -96,10 +100,18 @@
     <string name="password_hint">Enter your password</string>
     <string name="create_account_prompt">Don’t have an account? Create account</string>
     <string name="enter_phone_error">Enter your mobile number</string>
+    <string name="enter_identifier_error">Enter your email or mobile number</string>
     <string name="invalid_phone_error">Enter a valid mobile number for the selected country</string>
     <string name="enter_password_error">Enter your password</string>
     <string name="select_country_code">Select country calling code</string>
     <string name="invalid_email_error">Enter a valid email ending in .com</string>
+    <string name="invalid_identifier_error">Enter a valid .com email or international phone number</string>
+    <string name="account_not_found_create">Account not found. Create an account.</string>
+    <string name="incorrect_password">Incorrect password</string>
+    <string name="invalid_login_input">Enter a valid account and password</string>
+    <string name="account_already_exists">Account already exists</string>
+    <string name="invalid_registration_input">Check your account details and try again</string>
+    <string name="logout">Log out</string>
     <string name="password_length_error">Password must contain at least 6 characters</string>
     <string name="complete_all_fields">Please complete all fields</string>
     <string name="accept_terms_error">Please accept the terms and privacy policy</string>

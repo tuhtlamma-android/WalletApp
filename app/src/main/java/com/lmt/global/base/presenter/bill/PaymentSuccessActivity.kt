@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.lmt.global.base.R
-import com.lmt.global.base.data.entity.TransactionEntity
 import com.lmt.global.base.databinding.ActivityPaymentSuccessBinding
+import com.lmt.global.base.model.TransactionType
 import com.lmt.global.base.presenter.home.HomeActivity
 import com.lmt.global.base.presenter.wallet.WalletBaseActivity
 import com.lmt.global.base.presenter.wallet.WalletMoney
@@ -20,7 +20,7 @@ class PaymentSuccessActivity : WalletBaseActivity<ActivityPaymentSuccessBinding>
         val type = intent.getStringExtra(EXTRA_TYPE).orEmpty()
         val name = intent.getStringExtra(EXTRA_NAME).orEmpty()
         val amountMinor = intent.getLongExtra(EXTRA_AMOUNT_MINOR, 0L)
-        val isTransfer = type == TransactionEntity.TYPE_TRANSFER
+        val isTransfer = type == TransactionType.TRANSFER.storageValue
 
         successTitleText.text = getString(
             if (isTransfer) R.string.transfer_done else R.string.payment_done
@@ -52,12 +52,12 @@ class PaymentSuccessActivity : WalletBaseActivity<ActivityPaymentSuccessBinding>
 
         fun createIntent(
             context: Context,
-            type: String,
+            type: TransactionType,
             name: String,
             amountMinor: Long,
             transactionId: Long
         ) = Intent(context, PaymentSuccessActivity::class.java).apply {
-            putExtra(EXTRA_TYPE, type)
+            putExtra(EXTRA_TYPE, type.storageValue)
             putExtra(EXTRA_NAME, name)
             putExtra(EXTRA_AMOUNT_MINOR, amountMinor)
             putExtra(EXTRA_TRANSACTION_ID, transactionId)

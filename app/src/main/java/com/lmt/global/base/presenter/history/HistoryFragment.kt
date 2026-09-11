@@ -7,20 +7,17 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lmt.global.base.R
-import com.lmt.global.base.common.CommonViewModel
 import com.lmt.global.base.common.IFragment
 import com.lmt.global.base.databinding.FragmentHistoryBinding
 import com.lmt.global.base.presenter.wallet.TransactionAdapter
-import com.lmt.global.base.presenter.wallet.WalletViewModel
 import com.lmt.global.base.presenter.wallet.toWalletTransaction
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HistoryFragment : IFragment<FragmentHistoryBinding, CommonViewModel>() {
-    private val walletViewModel by viewModel<WalletViewModel>()
+class HistoryFragment : IFragment<FragmentHistoryBinding, HistoryViewModel>() {
     private lateinit var transactionAdapter: TransactionAdapter
 
-    override fun provideViewModel() = viewModel<CommonViewModel>()
+    override fun provideViewModel() = viewModel<HistoryViewModel>()
     override fun provideLayout() = R.layout.fragment_history
 
     override fun initViews() = with(viewBinding) {
@@ -43,9 +40,9 @@ class HistoryFragment : IFragment<FragmentHistoryBinding, CommonViewModel>() {
     override fun initObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                walletViewModel.history.collect { transactions ->
+                viewModel.uiState.collect { state ->
                     transactionAdapter.submitTransactions(
-                        transactions.map { it.toWalletTransaction() }
+                        state.transactions.map { it.toWalletTransaction() }
                     )
                 }
             }

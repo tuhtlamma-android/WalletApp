@@ -16,35 +16,29 @@ interface WalletDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertWallet(wallet: WalletEntity): Long
 
-    @Query("SELECT balanceMinor FROM wallet WHERE id = :walletId")
-    fun observeBalance(walletId: Int = WalletEntity.SINGLE_WALLET_ID): Flow<Long?>
+    @Query("SELECT balanceMinor FROM wallet WHERE accountId = :accountId")
+    fun observeBalance(accountId: Long): Flow<Long?>
 
-    @Query("UPDATE wallet SET balanceMinor = balanceMinor + :amountMinor WHERE id = :walletId")
-    suspend fun addBalance(
-        amountMinor: Long,
-        walletId: Int = WalletEntity.SINGLE_WALLET_ID
-    ): Int
+    @Query("UPDATE wallet SET balanceMinor = balanceMinor + :amountMinor WHERE accountId = :accountId")
+    suspend fun addBalance(accountId: Long, amountMinor: Long): Int
 
     @Query(
         "UPDATE wallet SET balanceMinor = balanceMinor - :amountMinor " +
-            "WHERE id = :walletId AND balanceMinor >= :amountMinor"
+            "WHERE accountId = :accountId AND balanceMinor >= :amountMinor"
     )
-    suspend fun debitBalance(
-        amountMinor: Long,
-        walletId: Int = WalletEntity.SINGLE_WALLET_ID
-    ): Int
+    suspend fun debitBalance(accountId: Long, amountMinor: Long): Int
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertCard(card: CardEntity): Long
 
-    @Query("SELECT * FROM cards ORDER BY createdAt DESC, id ASC")
-    fun observeCards(): Flow<List<CardEntity>>
+    @Query("SELECT * FROM cards WHERE accountId = :accountId ORDER BY createdAt DESC, id ASC")
+    fun observeCards(accountId: Long): Flow<List<CardEntity>>
 
-    @Query("SELECT * FROM cards WHERE id = :cardId LIMIT 1")
-    fun observeCard(cardId: String): Flow<CardEntity?>
+    @Query("SELECT * FROM cards WHERE accountId = :accountId AND id = :cardId LIMIT 1")
+    fun observeCard(accountId: Long, cardId: String): Flow<CardEntity?>
 
-    @Query("SELECT * FROM recipients WHERE normalizedName = :normalizedName LIMIT 1")
-    suspend fun findRecipient(normalizedName: String): RecipientEntity?
+    @Query("SELECT * FROM recipients WHERE accountId = :accountId AND normalizedName = :normalizedName LIMIT 1")
+    suspend fun findRecipient(accountId: Long, normalizedName: String): RecipientEntity?
 
     @Insert
     suspend fun insertRecipient(recipient: RecipientEntity): Long
@@ -52,15 +46,15 @@ interface WalletDao {
     @Update
     suspend fun updateRecipient(recipient: RecipientEntity)
 
-    @Query("SELECT * FROM recipients ORDER BY lastTransferAt DESC")
-    fun observeRecentRecipients(): Flow<List<RecipientEntity>>
+    @Query("SELECT * FROM recipients WHERE accountId = :accountId ORDER BY lastTransferAt DESC")
+    fun observeRecentRecipients(accountId: Long): Flow<List<RecipientEntity>>
 
     @Insert
     suspend fun insertTransaction(transaction: TransactionEntity): Long
 
-    @Query("SELECT * FROM transactions ORDER BY createdAt DESC, id DESC LIMIT :limit")
-    fun observeLatestTransactions(limit: Int): Flow<List<TransactionEntity>>
+    @Query("SELECT * FROM transactions WHERE accountId = :accountId ORDER BY createdAt DESC, id DESC LIMIT :limit")
+    fun observeLatestTransactions(accountId: Long, limit: Int): Flow<List<TransactionEntity>>
 
-    @Query("SELECT * FROM transactions ORDER BY createdAt DESC, id DESC")
-    fun observeHistory(): Flow<List<TransactionEntity>>
+    @Query("SELECT * FROM transactions WHERE accountId = :accountId ORDER BY createdAt DESC, id DESC")
+    fun observeHistory(accountId: Long): Flow<List<TransactionEntity>>
 }

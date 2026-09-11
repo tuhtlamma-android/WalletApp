@@ -97,9 +97,11 @@ dependencies {
     implementation(libs.koin.android)
     testImplementation(libs.koin.test)
     testImplementation(libs.koin.test.junit4)
+    testImplementation(libs.kotlinx.coroutines.test)
 
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.datastore.preferences)
 
     implementation(libs.glide)
     implementation(libs.glide.transform)

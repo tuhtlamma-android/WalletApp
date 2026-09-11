@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.lmt.global.base.data.repository.WalletRepositoryImpl
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -31,18 +32,23 @@ class AppDatabaseMigrationTest {
     }
 
     @Test
-    fun migration2To3_preservesWalletAndTransactionsAndAddsCards() = runBlocking {
+    fun migration2To4_preservesLegacyWalletDataUnderDeterministicLegacyAccount() = runBlocking {
         createVersion2Database()
 
         database = Room.databaseBuilder(context, AppDatabase::class.java, TEST_DATABASE)
-            .addMigrations(DatabaseMigrations.MIGRATION_2_3)
+            .addMigrations(
+                DatabaseMigrations.MIGRATION_2_3,
+                DatabaseMigrations.MIGRATION_3_4
+            )
             .allowMainThreadQueries()
             .build()
 
-        val repository = WalletRepository(requireNotNull(database))
-        assertEquals(123_456L, repository.balance.first())
-        assertEquals("Electricity", repository.history.first().single().title)
-        assertTrue(repository.cards.first().isEmpty())
+        val migratedDatabase = requireNotNull(database)
+        val repository = WalletRepositoryImpl(migratedDatabase, migratedDatabase.walletDao())
+        assertEquals("Legacy local account", migratedDatabase.accountDao().findById(1L)?.name)
+        assertEquals(123_456L, repository.observeBalance(1L).first())
+        assertEquals("Electricity", repository.observeHistory(1L).first().single().title)
+        assertTrue(repository.observeCards(1L).first().isEmpty())
     }
 
     private fun createVersion2Database() {

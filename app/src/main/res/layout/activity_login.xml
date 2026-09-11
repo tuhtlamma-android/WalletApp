@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="3dp"
-                android:text="@string/enter_mobile_number"
+                android:text="@string/enter_identifier"
 
                 android:textSize="21sp" />
 
@@ -90,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="@string/mobile_number"
+                android:text="@string/email_or_mobile"
                 android:textColor="@color/wallet_black" />
 
 
@@ -148,6 +148,16 @@
                     android:textSize="14sp" />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/identifierModeButton"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:gravity="end|center_vertical"
+                android:text="@string/use_email_instead"
+                android:textColor="@color/wallet_blue"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
 
             <!-- CREATE ACCOUNT -->

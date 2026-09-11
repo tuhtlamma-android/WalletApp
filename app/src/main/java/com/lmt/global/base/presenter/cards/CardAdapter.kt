@@ -9,14 +9,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.lmt.global.base.R
-import com.lmt.global.base.data.entity.CardEntity
 import com.lmt.global.base.databinding.ItemWalletCardBinding
+import com.lmt.global.base.model.Card
 import com.lmt.global.base.presenter.wallet.WalletMoney
 import com.lmt.global.base.presenter.wallet.maskCardNumber
 
 class CardAdapter(
-    private val onClick: (CardEntity) -> Unit
-) : ListAdapter<CardEntity, CardAdapter.Holder>(DiffCallback) {
+    private val onClick: (Card) -> Unit
+) : ListAdapter<Card, CardAdapter.Holder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = Holder(
         ItemWalletCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -28,7 +28,7 @@ class CardAdapter(
 
     inner class Holder(private val binding: ItemWalletCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(card: CardEntity, position: Int) = with(binding) {
+        fun bind(card: Card, position: Int) = with(binding) {
             val lightCard = position % CARD_STYLE_COUNT == 0
             cardContainer.setBackgroundResource(
                 when (position % CARD_STYLE_COUNT) {
@@ -51,9 +51,9 @@ class CardAdapter(
         }
     }
 
-    private object DiffCallback : DiffUtil.ItemCallback<CardEntity>() {
-        override fun areItemsTheSame(oldItem: CardEntity, newItem: CardEntity) = oldItem.id == newItem.id
-        override fun areContentsTheSame(oldItem: CardEntity, newItem: CardEntity) = oldItem == newItem
+    private object DiffCallback : DiffUtil.ItemCallback<Card>() {
+        override fun areItemsTheSame(oldItem: Card, newItem: Card) = oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: Card, newItem: Card) = oldItem == newItem
     }
 
     private companion object {

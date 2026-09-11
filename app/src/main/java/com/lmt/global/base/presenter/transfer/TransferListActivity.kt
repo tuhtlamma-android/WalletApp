@@ -13,14 +13,13 @@ import com.lmt.global.base.databinding.ActivityTransferListBinding
 import com.lmt.global.base.presenter.wallet.ContactAdapter
 import com.lmt.global.base.presenter.wallet.WalletBaseActivity
 import com.lmt.global.base.presenter.wallet.WalletContact
-import com.lmt.global.base.presenter.wallet.WalletViewModel
 import com.lmt.global.base.presenter.wallet.showRecipientInputDialog
 import com.lmt.global.base.presenter.wallet.toWalletContact
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TransferListActivity : WalletBaseActivity<ActivityTransferListBinding>() {
-    private val walletViewModel by viewModel<WalletViewModel>()
+    private val transferViewModel by viewModel<TransferViewModel>()
     private lateinit var contactAdapter: ContactAdapter
 
     override fun provideLayout() = R.layout.activity_transfer_list
@@ -35,8 +34,10 @@ class TransferListActivity : WalletBaseActivity<ActivityTransferListBinding>() {
         searchInput.doAfterTextChanged { contactAdapter.filter(it?.toString().orEmpty()) }
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                walletViewModel.recentRecipients.collect { recipients ->
-                    contactAdapter.submitContacts(recipients.map { it.toWalletContact() })
+                transferViewModel.uiState.collect { state ->
+                    contactAdapter.submitContacts(
+                        state.recipients.map { it.toWalletContact() }
+                    )
                 }
             }
         }

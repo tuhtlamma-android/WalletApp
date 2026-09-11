@@ -11,7 +11,7 @@ import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.lmt.global.base.R
 import com.lmt.global.base.databinding.BottomSheetTransactionDetailsBinding
-import com.lmt.global.base.data.entity.TransactionEntity
+import com.lmt.global.base.model.TransactionType
 import com.lmt.global.base.presenter.wallet.WalletMoney
 import com.lmt.global.base.presenter.wallet.WalletTransaction
 import com.lmt.global.base.presenter.wallet.WalletVisuals
@@ -37,7 +37,7 @@ class TransactionDetailsBottomSheet : BottomSheetDialogFragment() {
             val type = requireArguments().getString(ARG_TYPE).orEmpty()
             merchantIcon.setImageResource(WalletVisuals.iconRes(iconKey))
             merchantText.text = merchant
-            typeText.text = if (type == TransactionEntity.TYPE_TRANSFER) {
+            typeText.text = if (type == TransactionType.TRANSFER.storageValue) {
                 getString(R.string.money_transfer)
             } else {
                 getString(R.string.bill_payment)
@@ -74,7 +74,7 @@ class TransactionDetailsBottomSheet : BottomSheetDialogFragment() {
                 putString(ARG_MERCHANT, transaction.merchant)
                 putLong(ARG_AMOUNT_MINOR, transaction.amountMinor)
                 putLong(ARG_CREATED_AT, transaction.createdAt)
-                putString(ARG_TYPE, transaction.type)
+                putString(ARG_TYPE, transaction.type.storageValue)
             }
         }
     }

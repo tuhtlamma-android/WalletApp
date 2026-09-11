@@ -1,12 +1,14 @@
 package com.lmt.global.base.presenter.wallet
 
+import com.lmt.global.base.model.TransactionType
+
 data class WalletTransaction(
     val id: Long,
     val iconKey: String,
     val merchant: String,
     val createdAt: Long,
     val amountMinor: Long,
-    val type: String,
+    val type: TransactionType,
     val sectionLabel: String? = null
 )
 

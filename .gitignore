@@ -16,3 +16,4 @@ local.properties
 /.idea/
 /.kotlin/
 /docs/
+/REFACTOR_NOTES.md

@@ -5,8 +5,8 @@ import android.text.Spanned
 import android.text.style.RelativeSizeSpan
 import androidx.annotation.DrawableRes
 import com.lmt.global.base.R
-import com.lmt.global.base.data.entity.RecipientEntity
-import com.lmt.global.base.data.entity.TransactionEntity
+import com.lmt.global.base.model.Recipient
+import com.lmt.global.base.model.Transaction
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.NumberFormat
@@ -100,13 +100,13 @@ object WalletVisuals {
     }
 }
 
-fun RecipientEntity.toWalletContact() = WalletContact(
+fun Recipient.toWalletContact() = WalletContact(
     id = id,
     avatarKey = avatarKey,
     name = name
 )
 
-fun TransactionEntity.toWalletTransaction() = WalletTransaction(
+fun Transaction.toWalletTransaction() = WalletTransaction(
     id = id,
     iconKey = iconKey,
     merchant = title,

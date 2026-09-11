@@ -12,13 +12,12 @@ import com.lmt.global.base.R
 import com.lmt.global.base.databinding.ActivityCardPaymentBinding
 import com.lmt.global.base.presenter.wallet.WalletBaseActivity
 import com.lmt.global.base.presenter.wallet.WalletMoney
-import com.lmt.global.base.presenter.wallet.WalletViewModel
 import com.lmt.global.base.presenter.wallet.maskCardNumber
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CardPaymentActivity : WalletBaseActivity<ActivityCardPaymentBinding>() {
-    private val walletViewModel by viewModel<WalletViewModel>()
+    private val cardsViewModel by viewModel<CardsViewModel>()
 
     override fun provideLayout() = R.layout.activity_card_payment
     override fun initViews(savedInstanceState: Bundle?) {
@@ -29,7 +28,7 @@ class CardPaymentActivity : WalletBaseActivity<ActivityCardPaymentBinding>() {
         }
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                walletViewModel.card(cardId).collect { card ->
+                cardsViewModel.observeCard(cardId).collect { card ->
                     if (card != null) {
                         val contentColor = ContextCompat.getColor(
                             this@CardPaymentActivity,

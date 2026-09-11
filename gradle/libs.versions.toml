@@ -36,9 +36,11 @@ blurview = "version-2.0.6"
 converterGson = "2.9.0"
 paging3 = "3.3.2"
 roomKtx = "2.8.4"
+kotlinxCoroutines = "1.10.2"
 pagingRuntimeKtx = "3.4.1"
 gson = "2.13.2"
 countryCodePicker = "2.7.3"
+dataStore = "1.1.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -101,6 +103,8 @@ firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
 androidx-room-paging = { group = "androidx.room", name = "room-paging", version.ref = "roomKtx" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomKtx" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "dataStore" }
 
 [bundles]
 firebase = [

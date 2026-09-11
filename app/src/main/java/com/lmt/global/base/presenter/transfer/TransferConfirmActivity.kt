@@ -1,21 +1,22 @@
 package com.lmt.global.base.presenter.transfer
 
 import android.os.Bundle
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.lmt.global.base.R
-import com.lmt.global.base.data.WalletActionResult
-import com.lmt.global.base.data.entity.TransactionEntity
 import com.lmt.global.base.databinding.ActivityTransferConfirmBinding
+import com.lmt.global.base.model.TransactionType
+import com.lmt.global.base.model.WalletActionResult
 import com.lmt.global.base.presenter.bill.PaymentSuccessActivity
 import com.lmt.global.base.presenter.wallet.WalletBaseActivity
 import com.lmt.global.base.presenter.wallet.WalletMoney
-import com.lmt.global.base.presenter.wallet.WalletViewModel
 import com.lmt.global.base.presenter.wallet.WalletVisuals
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TransferConfirmActivity : WalletBaseActivity<ActivityTransferConfirmBinding>() {
-    private val walletViewModel by viewModel<WalletViewModel>()
+    private val transferViewModel by viewModel<TransferViewModel>()
     private val amountMinor by lazy { intent.getLongExtra(EXTRA_AMOUNT_MINOR, 0L) }
     private val recipientName by lazy {
         intent.getStringExtra(TransferAmountActivity.EXTRA_RECIPIENT_NAME).orEmpty()
@@ -33,26 +34,36 @@ class TransferConfirmActivity : WalletBaseActivity<ActivityTransferConfirmBindin
         recipientSubtitle.visibility = android.view.View.GONE
     }
 
+    override fun initObservers() {
+        super.initObservers()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                transferViewModel.results.collect(::handleTransferResult)
+            }
+        }
+    }
+
     override fun initListeners() = with(viewBinding) {
         backButton.setOnClickListener { finish() }
         securePaymentButton.setOnClickListener {
             securePaymentButton.isEnabled = false
-            lifecycleScope.launch {
-                val result = walletViewModel.transfer(recipientName, avatarKey, amountMinor)
-                when (result) {
-                    is WalletActionResult.Success -> openSuccess(result)
-                    WalletActionResult.InsufficientBalance -> {
-                        openFailure(
-                            getString(R.string.transfer_failed),
-                            getString(R.string.insufficient_balance_message)
-                        )
-                    }
-                    else -> openFailure(
-                        getString(R.string.transfer_failed),
-                        getString(R.string.invalid_transaction_message)
-                    )
-                }
-            }
+            transferViewModel.onState(
+                TransferAction.Submit(recipientName, avatarKey, amountMinor)
+            )
+        }
+    }
+
+    private fun handleTransferResult(result: WalletActionResult) {
+        when (result) {
+            is WalletActionResult.Success -> openSuccess(result)
+            WalletActionResult.InsufficientBalance -> openFailure(
+                getString(R.string.transfer_failed),
+                getString(R.string.insufficient_balance_message)
+            )
+            else -> openFailure(
+                getString(R.string.transfer_failed),
+                getString(R.string.invalid_transaction_message)
+            )
         }
     }
 
@@ -60,7 +71,7 @@ class TransferConfirmActivity : WalletBaseActivity<ActivityTransferConfirmBindin
         startActivity(
             PaymentSuccessActivity.createIntent(
                 context = this,
-                type = TransactionEntity.TYPE_TRANSFER,
+                type = TransactionType.TRANSFER,
                 name = recipientName,
                 amountMinor = amountMinor,
                 transactionId = result.transactionId ?: 0L

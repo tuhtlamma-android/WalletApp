@@ -7,17 +7,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.lmt.global.base.R
-import com.lmt.global.base.data.WalletActionResult
-import com.lmt.global.base.data.entity.TransactionEntity
 import com.lmt.global.base.databinding.ActivityNewBillerBinding
+import com.lmt.global.base.model.TransactionType
+import com.lmt.global.base.model.WalletActionResult
 import com.lmt.global.base.presenter.wallet.WalletBaseActivity
 import com.lmt.global.base.presenter.wallet.WalletMoney
-import com.lmt.global.base.presenter.wallet.WalletViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewBillerActivity : WalletBaseActivity<ActivityNewBillerBinding>() {
-    private val walletViewModel by viewModel<WalletViewModel>()
+    private val billViewModel by viewModel<BillViewModel>()
     private var selectedBiller: BillerOption? = null
 
     override fun provideLayout() = R.layout.activity_new_biller
@@ -31,11 +30,16 @@ class NewBillerActivity : WalletBaseActivity<ActivityNewBillerBinding>() {
         super.initObservers()
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                walletViewModel.balance.collect { balance ->
-                    viewBinding.availableBalanceText.text = getString(
-                        R.string.available_balance,
-                        WalletMoney.format(balance ?: 0L)
-                    )
+                launch {
+                    billViewModel.balance.collect { balance ->
+                        viewBinding.availableBalanceText.text = getString(
+                            R.string.available_balance,
+                            WalletMoney.format(balance)
+                        )
+                    }
+                }
+                launch {
+                    billViewModel.results.collect(::handlePaymentResult)
                 }
             }
         }
@@ -65,29 +69,32 @@ class NewBillerActivity : WalletBaseActivity<ActivityNewBillerBinding>() {
         }
 
         payBillButton.isEnabled = false
-        lifecycleScope.launch {
-            val billerName = getString(biller.nameRes)
-            when (val result = walletViewModel.payBill(billerName, biller.type, amountMinor)) {
-                is WalletActionResult.Success -> {
-                    startActivity(
-                        PaymentSuccessActivity.createIntent(
-                            context = this@NewBillerActivity,
-                            type = TransactionEntity.TYPE_PAY_BILL,
-                            name = billerName,
-                            amountMinor = amountMinor,
-                            transactionId = result.transactionId ?: 0L
-                        )
+        billViewModel.onState(
+            BillAction.Submit(getString(biller.nameRes), biller.type, amountMinor)
+        )
+    }
+
+    private fun handlePaymentResult(event: BillPaymentResult) = with(viewBinding) {
+        when (val result = event.result) {
+            is WalletActionResult.Success -> {
+                startActivity(
+                    PaymentSuccessActivity.createIntent(
+                        context = this@NewBillerActivity,
+                        type = TransactionType.PAY_BILL,
+                        name = event.billerName,
+                        amountMinor = event.amountMinor,
+                        transactionId = result.transactionId ?: 0L
                     )
-                    finish()
-                }
-                WalletActionResult.InsufficientBalance -> {
-                    amountInput.error = getString(R.string.insufficient_balance)
-                    payBillButton.isEnabled = true
-                }
-                else -> {
-                    amountInput.error = getString(R.string.enter_valid_amount_error)
-                    payBillButton.isEnabled = true
-                }
+                )
+                finish()
+            }
+            WalletActionResult.InsufficientBalance -> {
+                amountInput.error = getString(R.string.insufficient_balance)
+                payBillButton.isEnabled = true
+            }
+            else -> {
+                amountInput.error = getString(R.string.enter_valid_amount_error)
+                payBillButton.isEnabled = true
             }
         }
     }

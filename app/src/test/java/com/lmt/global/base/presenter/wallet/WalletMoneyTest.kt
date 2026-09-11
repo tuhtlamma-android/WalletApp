@@ -30,6 +30,11 @@ class WalletMoneyTest {
     }
 
     @Test
+    fun format_displaysZeroAsCurrency() {
+        assertEquals("$0.00", WalletMoney.format(0L))
+    }
+
+    @Test
     fun maskCardNumber_onlyExposesLastFourDigits() {
         assertEquals("**** **** **** 5678", maskCardNumber("1234567812345678"))
     }

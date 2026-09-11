@@ -7,19 +7,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lmt.global.base.R
-import com.lmt.global.base.common.CommonViewModel
 import com.lmt.global.base.common.IFragment
-import com.lmt.global.base.data.entity.CardEntity
 import com.lmt.global.base.databinding.FragmentCardsBinding
-import com.lmt.global.base.presenter.wallet.WalletViewModel
+import com.lmt.global.base.model.Card
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CardsFragment : IFragment<FragmentCardsBinding, CommonViewModel>() {
-    private val walletViewModel by viewModel<WalletViewModel>()
+class CardsFragment : IFragment<FragmentCardsBinding, CardsViewModel>() {
     private lateinit var cardAdapter: CardAdapter
 
-    override fun provideViewModel() = viewModel<CommonViewModel>()
+    override fun provideViewModel() = viewModel<CardsViewModel>()
     override fun provideLayout() = R.layout.fragment_cards
     override fun initViews() = with(viewBinding) {
         cardAdapter = CardAdapter(::openCard)
@@ -30,7 +27,8 @@ class CardsFragment : IFragment<FragmentCardsBinding, CommonViewModel>() {
     override fun initObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                walletViewModel.cards.collect { cards ->
+                viewModel.uiState.collect { state ->
+                    val cards = state.cards
                     cardAdapter.submitList(cards)
                     viewBinding.myCardsText.text = getString(R.string.my_cards_count, cards.size)
                     viewBinding.emptyState.visibility = if (cards.isEmpty()) View.VISIBLE else View.GONE
@@ -44,7 +42,7 @@ class CardsFragment : IFragment<FragmentCardsBinding, CommonViewModel>() {
         }
     }
 
-    private fun openCard(card: CardEntity) {
+    private fun openCard(card: Card) {
         startActivity(
             Intent(requireContext(), CardPaymentActivity::class.java)
                 .putExtra(CardPaymentActivity.EXTRA_CARD_ID, card.id)

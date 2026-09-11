@@ -4,22 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.lmt.global.base.R
-import com.lmt.global.base.data.WalletActionResult
 import com.lmt.global.base.databinding.BottomSheetBillConfirmationBinding
-import com.lmt.global.base.data.entity.TransactionEntity
+import com.lmt.global.base.model.TransactionType
+import com.lmt.global.base.model.WalletActionResult
 import com.lmt.global.base.presenter.transfer.TransferFailureActivity
 import com.lmt.global.base.presenter.wallet.WalletMoney
-import com.lmt.global.base.presenter.wallet.WalletViewModel
 import com.lmt.global.base.presenter.wallet.WalletVisuals
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BillConfirmationBottomSheet : BottomSheetDialogFragment() {
     private var binding: BottomSheetBillConfirmationBinding? = null
-    private val walletViewModel by viewModel<WalletViewModel>()
+    private val billViewModel by viewModel<BillViewModel>()
     private val billerName get() = requireArguments().getString(ARG_BILLER_NAME).orEmpty()
     private val iconKey get() = requireArguments().getString(ARG_ICON_KEY).orEmpty()
     private val amountMinor get() = requireArguments().getLong(ARG_AMOUNT_MINOR)
@@ -35,33 +36,40 @@ class BillConfirmationBottomSheet : BottomSheetDialogFragment() {
             doneButton.setOnClickListener { dismiss() }
             securePaymentButton.setOnClickListener {
                 securePaymentButton.isEnabled = false
-                viewLifecycleOwner.lifecycleScope.launch {
-                    val result = walletViewModel.payBill(billerName, iconKey, amountMinor)
-                    when (result) {
-                        is WalletActionResult.Success -> openSuccessActivity(result)
-                        WalletActionResult.InsufficientBalance -> {
-                            openFailureActivity(
-                                getString(R.string.payment_failed),
-                                getString(R.string.insufficient_balance_message)
-                            )
-                        }
-                        else -> openFailureActivity(
-                            getString(R.string.payment_failed),
-                            getString(R.string.invalid_transaction_message)
-                        )
-                    }
-                }
+                billViewModel.onState(BillAction.Submit(billerName, iconKey, amountMinor))
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                billViewModel.results.collect(::handlePaymentResult)
             }
         }
     }
 
-    private fun openSuccessActivity(result: WalletActionResult.Success) {
+    private fun handlePaymentResult(event: BillPaymentResult) {
+        when (val result = event.result) {
+            is WalletActionResult.Success -> openSuccessActivity(event, result)
+            WalletActionResult.InsufficientBalance -> openFailureActivity(
+                getString(R.string.payment_failed),
+                getString(R.string.insufficient_balance_message)
+            )
+            else -> openFailureActivity(
+                getString(R.string.payment_failed),
+                getString(R.string.invalid_transaction_message)
+            )
+        }
+    }
+
+    private fun openSuccessActivity(
+        event: BillPaymentResult,
+        result: WalletActionResult.Success
+    ) {
         val host = requireActivity()
         val intent = PaymentSuccessActivity.createIntent(
             context = host,
-            type = TransactionEntity.TYPE_PAY_BILL,
-            name = billerName,
-            amountMinor = amountMinor,
+            type = TransactionType.PAY_BILL,
+            name = event.billerName,
+            amountMinor = event.amountMinor,
             transactionId = result.transactionId ?: 0L
         )
         dismiss()

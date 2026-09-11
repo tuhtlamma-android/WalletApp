@@ -1,15 +1,28 @@
 package com.lmt.global.base.data.entity
 
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.Index
-import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "cards",
-    indices = [Index(value = ["cardNumber"], unique = true), Index("createdAt")]
+    primaryKeys = ["accountId", "id"],
+    foreignKeys = [
+        ForeignKey(
+            entity = AccountEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["accountId"],
+            onDelete = ForeignKey.CASCADE
+        )
+    ],
+    indices = [
+        Index(value = ["accountId", "cardNumber"], unique = true),
+        Index(value = ["accountId", "createdAt"])
+    ]
 )
 data class CardEntity(
-    @PrimaryKey val id: String,
+    val accountId: Long,
+    val id: String,
     val name: String,
     val cardNumber: String,
     val balanceMinor: Long,

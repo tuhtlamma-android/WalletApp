@@ -60,6 +60,12 @@
             <TextView style="@style/Widget.Wallet.MenuLabel" android:text="About" />
             <ImageView style="@style/Widget.Wallet.ChevronImage" />
         </LinearLayout>
+        <View style="@style/Widget.Wallet.Divider" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" />
+        <LinearLayout android:id="@+id/logoutButton" style="@style/Widget.Wallet.MenuRow" android:orientation="horizontal">
+            <ImageView style="@style/Widget.Wallet.MenuIcon" android:src="@drawable/ic_wallet_back" />
+            <TextView style="@style/Widget.Wallet.MenuLabel" android:text="@string/logout" />
+            <ImageView style="@style/Widget.Wallet.ChevronImage" />
+        </LinearLayout>
     </LinearLayout>
     </ScrollView>
 </layout>

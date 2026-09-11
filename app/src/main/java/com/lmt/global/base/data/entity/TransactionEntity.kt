@@ -9,16 +9,23 @@ import androidx.room.PrimaryKey
     tableName = "transactions",
     foreignKeys = [
         ForeignKey(
+            entity = AccountEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["accountId"],
+            onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
             entity = RecipientEntity::class,
             parentColumns = ["id"],
             childColumns = ["recipientId"],
             onDelete = ForeignKey.SET_NULL
         )
     ],
-    indices = [Index("recipientId"), Index("createdAt")]
+    indices = [Index("recipientId"), Index(value = ["accountId", "createdAt"])]
 )
 data class TransactionEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0L,
+    val accountId: Long,
     val type: String,
     val title: String,
     val recipientId: Long? = null,
