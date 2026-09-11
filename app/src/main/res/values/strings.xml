@@ -89,7 +89,10 @@
     <string name="rent">Rent</string>
     <string name="other">Other</string>
     <string name="amount">Amount</string>
+    <string name="enter_amount">Enter Amount</string>
+    <string name="currency_symbol">$</string>
     <string name="pay_bill">Pay Bill</string>
+    <string name="secure_payment">Secure payment</string>
     <string name="select_biller_error">Select a biller</string>
     <string name="available_balance">Available: %1$s</string>
     <string name="transfer_to">Transfer to</string>

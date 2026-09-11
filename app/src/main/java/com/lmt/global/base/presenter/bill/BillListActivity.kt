@@ -40,7 +40,13 @@ class BillListActivity : WalletBaseActivity<ActivityBillListBinding>() {
     }
 
     private fun showBill(name: String, iconKey: String, amountMinor: Long) {
-        BillConfirmationBottomSheet.newInstance(name, iconKey, amountMinor)
-            .show(supportFragmentManager, "bill-confirmation")
+        startActivity(
+            BillAmountActivity.createIntent(
+                context = this,
+                billerName = name,
+                iconKey = iconKey,
+                suggestedAmountMinor = amountMinor
+            )
+        )
     }
 }

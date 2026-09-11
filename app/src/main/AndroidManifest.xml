@@ -37,6 +37,8 @@
         <activity android:name=".presenter.cards.AddCardActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".presenter.bill.BillListActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".presenter.bill.NewBillerActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".presenter.bill.BillAmountActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustNothing" />
+        <activity android:name=".presenter.bill.BillConfirmActivity" android:screenOrientation="portrait" />
         <activity android:name=".presenter.bill.PaymentSuccessActivity" android:screenOrientation="portrait" />
         <activity android:name=".presenter.transfer.TransferListActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".presenter.transfer.TransferAmountActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustNothing" />

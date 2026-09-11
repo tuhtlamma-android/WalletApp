@@ -64,11 +64,10 @@ class HomeFragment : IFragment<FragmentHomeBinding, HomeViewModel>() {
                         )
                         val items = state.latestTransactions.map { it.toWalletTransaction() }
                         latestAdapter.submitTransactions(items)
-                        viewBinding.latestEmptyState.visibility = if (items.isEmpty()) {
-                            View.VISIBLE
-                        } else {
-                            View.GONE
-                        }
+                        val latestVisibility = if (items.isEmpty()) View.GONE else View.VISIBLE
+                        viewBinding.latestTransactionsHeader.visibility = latestVisibility
+                        viewBinding.latestTransactionList.visibility = latestVisibility
+                        viewBinding.latestEmptyState.visibility = View.GONE
                     }
                 }
                 launch {

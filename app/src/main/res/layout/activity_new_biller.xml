@@ -26,35 +26,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/billerList"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="12dp"
-            android:layout_weight="1"
             android:clipToPadding="false"
-            android:paddingBottom="8dp" />
-
-        <TextView
-            style="@style/TextAppearance.Wallet.Section"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/amount" />
-        <EditText
-            android:id="@+id/amountInput"
-            style="@style/Widget.Wallet.Input"
-            android:hint="@string/amount_input_hint"
-            android:imeOptions="actionDone"
-            android:inputType="numberDecimal" />
-        <TextView
-            android:id="@+id/availableBalanceText"
-            style="@style/TextAppearance.Wallet.Caption"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/payBillButton"
-            style="@style/Widget.Wallet.PrimaryButton"
-            android:layout_width="match_parent"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/pay_bill" />
+            android:paddingBottom="16dp" />
     </LinearLayout>
 </layout>
