@@ -1,6 +1,10 @@
 package com.lmt.global.base.presenter.wallet
 
 import com.lmt.global.base.model.Card
+import com.lmt.global.base.model.Account
+import com.lmt.global.base.model.LoginResult
+import com.lmt.global.base.model.RegisterResult
+import com.lmt.global.base.data.repository.AuthRepository
 import com.lmt.global.base.model.Recipient
 import com.lmt.global.base.model.Transaction
 import com.lmt.global.base.model.TransactionType
@@ -40,17 +44,28 @@ class WalletViewModelsTest {
         repository.balance(ACCOUNT_B).value = 50_000L
         repository.recipients(ACCOUNT_A).value = listOf(Recipient(1L, "A recipient", "a", 1L))
         repository.recipients(ACCOUNT_B).value = listOf(Recipient(2L, "B recipient", "b", 2L))
-        val viewModel = HomeViewModel(repository, session)
+        val viewModel = HomeViewModel(
+            repository,
+            session,
+            FakeAuthRepository(
+                mapOf(
+                    ACCOUNT_A to Account(ACCOUNT_A, "Account A", "a@example.com", null),
+                    ACCOUNT_B to Account(ACCOUNT_B, "Account B", null, "+962791234567")
+                )
+            )
+        )
         viewModel.uiState.launchIn(backgroundScope)
         advanceUntilIdle()
 
         assertEquals(25_000L, viewModel.uiState.value.balance)
+        assertEquals("Account A", viewModel.uiState.value.account?.name)
         assertEquals("A recipient", viewModel.uiState.value.recentRecipients.single().name)
 
         session.saveAccountId(ACCOUNT_B)
         advanceUntilIdle()
 
         assertEquals(50_000L, viewModel.uiState.value.balance)
+        assertEquals("Account B", viewModel.uiState.value.account?.name)
         assertEquals("B recipient", viewModel.uiState.value.recentRecipients.single().name)
     }
 
@@ -84,7 +99,7 @@ class WalletViewModelsTest {
             addCardResult = WalletActionResult.DuplicateCard
         }
         val session = FakeSessionManager(ACCOUNT_B)
-        val home = HomeViewModel(repository, session)
+        val home = HomeViewModel(repository, session, FakeAuthRepository())
         val addCard = AddCardViewModel(repository, session)
         val transfer = TransferViewModel(repository, session)
         val bill = BillViewModel(repository, session)
@@ -121,6 +136,16 @@ class WalletViewModelsTest {
         amountMinor = 100L,
         createdAt = id
     )
+
+    private class FakeAuthRepository(
+        private val accounts: Map<Long, Account> = emptyMap()
+    ) : AuthRepository {
+        override suspend fun login(identifier: String, password: String) = LoginResult.InvalidInput
+        override suspend fun register(name: String, identifier: String, password: String) =
+            RegisterResult.InvalidInput
+        override suspend fun getAccount(id: Long) = accounts[id]
+        override suspend fun accountExists(identifier: String) = false
+    }
 
     private companion object {
         const val ACCOUNT_A = 10L

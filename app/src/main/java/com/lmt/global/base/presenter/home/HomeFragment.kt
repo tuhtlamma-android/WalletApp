@@ -53,6 +53,9 @@ class HomeFragment : IFragment<FragmentHomeBinding, HomeViewModel>() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.uiState.collect { state ->
+                        viewBinding.greetingText.text = state.account?.name
+                            ?.let { getString(R.string.hello_user, it) }
+                            ?: getString(R.string.hello)
                         val balance = state.balance
                         viewBinding.balanceText.visibility = View.VISIBLE
                         viewBinding.balanceText.text = WalletMoney.formatMainBalance(balance)

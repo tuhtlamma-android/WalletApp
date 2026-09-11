@@ -30,7 +30,11 @@
     <string name="history">History</string>
     <string name="cards">Cards</string>
     <string name="more">More</string>
-    <string name="hello_abdullah">Hello,\nAbdullah!</string>
+    <string name="hello">Hello!</string>
+    <string name="hello_user">Hello,\n%1$s!</string>
+    <string name="profile_name_placeholder">Account</string>
+    <string name="local_account">Local account</string>
+    <string name="not_provided">Not provided</string>
     <string name="main_balance">Main balance</string>
     <string name="zero_balance">$0.00</string>
     <string name="balance_value">$14,235.34</string>

@@ -31,6 +31,7 @@ import com.lmt.global.base.presenter.auth.LoginViewModel
 import com.lmt.global.base.presenter.auth.RegisterViewModel
 import com.lmt.global.base.presenter.more.MoreViewModel
 import com.lmt.global.base.presenter.splash.SplashViewModel
+import com.lmt.global.base.presenter.profile.ProfileViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.remoteconfig.remoteConfig
 import org.koin.core.module.Module
@@ -108,5 +109,6 @@ private fun viewModels() = object : Feature {
         viewModelOf(::RegisterViewModel)
         viewModelOf(::SplashViewModel)
         viewModelOf(::MoreViewModel)
+        viewModelOf(::ProfileViewModel)
     }
 }
