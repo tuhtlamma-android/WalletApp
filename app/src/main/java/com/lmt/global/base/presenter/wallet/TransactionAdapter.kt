@@ -37,10 +37,7 @@ class TransactionAdapter(
     }
 
     private fun applyFilter() {
-        val filtered = if (query.isBlank()) sourceItems else sourceItems.filter {
-            it.merchant.contains(query, ignoreCase = true) ||
-                walletDateTime(it.createdAt).contains(query, ignoreCase = true)
-        }
+        val filtered = sourceItems.filter { it.matchesHistoryQuery(query) }
         val visibleItems = if (showSections) {
             filtered.mapIndexed { index, item ->
                 val currentSection = walletSection(item.createdAt)

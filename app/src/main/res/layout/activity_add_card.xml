@@ -22,11 +22,28 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/add_card_title" />
 
-            <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="28dp" android:text="@string/card_id" />
-            <EditText android:id="@+id/cardIdInput" style="@style/Widget.Wallet.Input" android:hint="@string/card_id_hint" android:imeOptions="actionNext" android:inputType="textCapCharacters" />
+            <TextView style="@style/TextAppearance.Wallet.Section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="@string/card_id" />
+            <EditText
+                android:id="@+id/cardIdInput"
+                style="@style/Widget.Wallet.Input"
+                android:hint="@string/card_id_hint"
+                android:imeOptions="actionNext"
+                android:inputType="textCapCharacters" />
 
-            <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="@string/card_name" />
-            <EditText android:id="@+id/cardNameInput" style="@style/Widget.Wallet.Input" android:hint="@string/card_name_hint" android:imeOptions="actionNext" android:inputType="textPersonName|textCapWords" />
+            <TextView
+                style="@style/TextAppearance.Wallet.Section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/card_name" />
+            <EditText
+                android:id="@+id/cardNameInput"
+                style="@style/Widget.Wallet.Input"
+                android:hint="@string/card_name_hint" android:imeOptions="actionNext" android:inputType="textPersonName|textCapWords" />
 
             <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="@string/card_number" />
             <EditText android:id="@+id/cardNumberInput"

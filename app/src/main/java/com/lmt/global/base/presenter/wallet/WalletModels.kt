@@ -12,6 +12,9 @@ data class WalletTransaction(
     val sectionLabel: String? = null
 )
 
+internal fun WalletTransaction.matchesHistoryQuery(query: String): Boolean =
+    query.isBlank() || merchant.contains(query.trim(), ignoreCase = true)
+
 data class WalletContact(
     val id: Long,
     val avatarKey: String,
