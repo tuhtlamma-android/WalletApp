@@ -19,3 +19,11 @@ sealed interface RegisterResult {
     data object AlreadyExists : RegisterResult
     data object InvalidInput : RegisterResult
 }
+
+sealed interface ChangePasswordResult {
+    data object Success : ChangePasswordResult
+    data object AccountNotFound : ChangePasswordResult
+    data object WrongCurrentPassword : ChangePasswordResult
+    data object SamePassword : ChangePasswordResult
+    data object InvalidInput : ChangePasswordResult
+}

@@ -6,6 +6,7 @@ import com.lmt.global.base.data.dao.AccountDao
 import com.lmt.global.base.data.entity.AccountEntity
 import com.lmt.global.base.data.mapper.AccountMapper
 import com.lmt.global.base.data.security.PasswordHasher
+import com.lmt.global.base.model.ChangePasswordResult
 import com.lmt.global.base.model.LoginResult
 import com.lmt.global.base.model.RegisterResult
 import java.util.Locale
@@ -56,6 +57,31 @@ class AuthRepositoryImpl(
     }
 
     override suspend fun getAccount(id: Long) = accountDao.findById(id)?.let(AccountMapper::toModel)
+
+    override suspend fun changePassword(
+        accountId: Long,
+        currentPassword: String,
+        newPassword: String
+    ): ChangePasswordResult {
+        if (accountId <= 0L || currentPassword.isBlank() || newPassword.length < MIN_PASSWORD_LENGTH) {
+            return ChangePasswordResult.InvalidInput
+        }
+        val account = accountDao.findById(accountId) ?: return ChangePasswordResult.AccountNotFound
+        val currentPasswordMatches = withContext(Dispatchers.Default) {
+            passwordHasher.verify(currentPassword, account.passwordHash)
+        }
+        if (!currentPasswordMatches) return ChangePasswordResult.WrongCurrentPassword
+        if (currentPassword == newPassword) return ChangePasswordResult.SamePassword
+
+        val newPasswordHash = withContext(Dispatchers.Default) { passwordHasher.hash(newPassword) }
+        return if (accountDao.updatePassword(accountId, account.passwordHash, newPasswordHash) == 1) {
+            ChangePasswordResult.Success
+        } else if (accountDao.findById(accountId) == null) {
+            ChangePasswordResult.AccountNotFound
+        } else {
+            ChangePasswordResult.WrongCurrentPassword
+        }
+    }
 
     override suspend fun accountExists(identifier: String): Boolean {
         val normalized = normalize(identifier) ?: return false

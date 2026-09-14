@@ -2,6 +2,7 @@ package com.lmt.global.base.presenter.auth
 
 import com.lmt.global.base.data.repository.AuthRepository
 import com.lmt.global.base.model.Account
+import com.lmt.global.base.model.ChangePasswordResult
 import com.lmt.global.base.model.LoginResult
 import com.lmt.global.base.model.RegisterResult
 import com.lmt.global.base.presenter.profile.ProfileViewModel
@@ -43,6 +44,11 @@ class ProfileViewModelTest {
         override suspend fun login(identifier: String, password: String) = LoginResult.InvalidInput
         override suspend fun register(name: String, identifier: String, password: String) =
             RegisterResult.InvalidInput
+        override suspend fun changePassword(
+            accountId: Long,
+            currentPassword: String,
+            newPassword: String
+        ) = ChangePasswordResult.InvalidInput
         override suspend fun getAccount(id: Long) = account.takeIf { it.id == id }
         override suspend fun accountExists(identifier: String) = false
     }

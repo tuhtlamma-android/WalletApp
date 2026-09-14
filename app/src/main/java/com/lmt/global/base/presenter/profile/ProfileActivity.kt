@@ -1,5 +1,6 @@
 package com.lmt.global.base.presenter.profile
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -31,5 +32,10 @@ class ProfileActivity : WalletBaseActivity<ActivityProfileBinding>() {
             }
         }
     }
-    override fun initListeners() { viewBinding.backButton.setOnClickListener { finish() } }
+    override fun initListeners() = with(viewBinding) {
+        backButton.setOnClickListener { finish() }
+        changePasswordRow.setOnClickListener {
+            startActivity(Intent(this@ProfileActivity, ChangePasswordActivity::class.java))
+        }
+    }
 }

@@ -25,4 +25,15 @@ interface AccountDao {
 
     @Query("SELECT EXISTS(SELECT 1 FROM accounts WHERE phone = :phone)")
     suspend fun phoneExists(phone: String): Boolean
+
+    @Query(
+        """UPDATE accounts
+            SET passwordHash = :newPasswordHash
+            WHERE id = :id AND passwordHash = :currentPasswordHash"""
+    )
+    suspend fun updatePassword(
+        id: Long,
+        currentPasswordHash: String,
+        newPasswordHash: String
+    ): Int
 }

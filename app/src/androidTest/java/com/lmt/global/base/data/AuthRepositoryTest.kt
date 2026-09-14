@@ -9,6 +9,7 @@ import com.lmt.global.base.data.repository.AuthRepositoryImpl
 import com.lmt.global.base.data.security.Pbkdf2PasswordHasher
 import com.lmt.global.base.model.LoginResult
 import com.lmt.global.base.model.RegisterResult
+import com.lmt.global.base.model.ChangePasswordResult
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -87,7 +88,53 @@ class AuthRepositoryTest {
         )
     }
 
+    @Test
+    fun changePasswordWithCorrectCurrentPassword_updatesStoredHashAndLoginCredential() = runBlocking {
+        val account = (repository.register(
+            "Account A",
+            "user@example.com",
+            PASSWORD
+        ) as RegisterResult.Success).account
+        val oldHash = database.accountDao().findById(account.id)?.passwordHash
+
+        val result = repository.changePassword(account.id, PASSWORD, NEW_PASSWORD)
+
+        assertEquals(ChangePasswordResult.Success, result)
+        assertNotEquals(oldHash, database.accountDao().findById(account.id)?.passwordHash)
+        assertEquals(LoginResult.WrongPassword, repository.login("user@example.com", PASSWORD))
+        assertTrue(repository.login("user@example.com", NEW_PASSWORD) is LoginResult.Success)
+    }
+
+    @Test
+    fun changePasswordWithWrongCurrentPassword_keepsExistingCredential() = runBlocking {
+        val account = (repository.register(
+            "Account A",
+            "user@example.com",
+            PASSWORD
+        ) as RegisterResult.Success).account
+
+        val result = repository.changePassword(account.id, "wrong-password", NEW_PASSWORD)
+
+        assertEquals(ChangePasswordResult.WrongCurrentPassword, result)
+        assertTrue(repository.login("user@example.com", PASSWORD) is LoginResult.Success)
+    }
+
+    @Test
+    fun changePasswordRejectsCurrentPasswordAsNewPassword() = runBlocking {
+        val account = (repository.register(
+            "Account A",
+            "user@example.com",
+            PASSWORD
+        ) as RegisterResult.Success).account
+
+        assertEquals(
+            ChangePasswordResult.SamePassword,
+            repository.changePassword(account.id, PASSWORD, PASSWORD)
+        )
+    }
+
     private companion object {
         const val PASSWORD = "secret123"
+        const val NEW_PASSWORD = "new-secret456"
     }
 }
