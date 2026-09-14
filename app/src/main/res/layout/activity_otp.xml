@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data />
     <LinearLayout
@@ -8,12 +9,30 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <FrameLayout android:layout_width="match_parent" android:layout_height="52dp">
-            <TextView android:id="@+id/backButton" style="@style/Widget.Wallet.BackButton" android:layout_gravity="start|center_vertical" />
-            <ImageView android:layout_width="89dp" android:layout_height="24dp" android:layout_gravity="center" android:contentDescription="@string/app_name" android:src="@drawable/img_text_screen" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp">
+            <TextView
+                android:id="@+id/backButton"
+                style="@style/Widget.Wallet.BackButton"
+                android:layout_gravity="start|center_vertical" />
+            <ImageView
+                android:layout_width="89dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/img_text_screen" />
         </FrameLayout>
-        <TextView style="@style/TextAppearance.Wallet.Section" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:gravity="center" android:text="@string/sms_sent" android:textColor="@color/wallet_black" />
-        <TextView style="@style/TextAppearance.Wallet.Caption"
+        <TextView
+            style="@style/TextAppearance.Wallet.Section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="@string/sms_sent"
+            android:textColor="@color/wallet_black" />
+        <TextView
+            style="@style/TextAppearance.Wallet.Caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -58,8 +77,17 @@
                 app:layout_constraintStart_toEndOf="@id/otpInput"
                 app:layout_constraintTop_toTopOf="@id/otpInput" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <TextView android:id="@+id/resendButton" style="@style/TextAppearance.Wallet.Link" android:layout_width="match_parent" android:layout_height="52dp" android:gravity="center" android:text="@string/resend_code" />
-        <Space android:layout_width="1dp" android:layout_height="0dp" android:layout_weight="1" />
+        <TextView
+            android:id="@+id/resendButton"
+            style="@style/TextAppearance.Wallet.Link"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="center"
+            android:text="@string/resend_code" />
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="267dp"
@@ -78,18 +106,54 @@
                 android:id="@+id/key3"
                 style="@style/Widget.Wallet.Key"
                 android:text="3" />
-            <TextView android:id="@+id/key4" style="@style/Widget.Wallet.Key" android:text="4" />
-            <TextView android:id="@+id/key5" style="@style/Widget.Wallet.Key" android:text="5" />
-            <TextView android:id="@+id/key6" style="@style/Widget.Wallet.Key" android:text="6" />
-            <TextView android:id="@+id/key7" style="@style/Widget.Wallet.Key" android:text="7" />
-            <TextView android:id="@+id/key8" style="@style/Widget.Wallet.Key" android:text="8" />
-            <TextView android:id="@+id/key9" style="@style/Widget.Wallet.Key" android:text="9" />
-            <Space style="@style/Widget.Wallet.Key" />
-            <TextView android:id="@+id/key0" style="@style/Widget.Wallet.Key" android:text="0" />
-            <ImageView android:id="@+id/deleteKey" style="@style/Widget.Wallet.KeyImage" android:contentDescription="@string/delete" android:src="@drawable/ic_wallet_keypad_delete" />
+            <TextView
+                android:id="@+id/key4"
+                style="@style/Widget.Wallet.Key"
+                android:text="4" />
+            <TextView
+                android:id="@+id/key5"
+                style="@style/Widget.Wallet.Key"
+                android:text="5" />
+            <TextView
+                android:id="@+id/key6"
+                style="@style/Widget.Wallet.Key"
+                android:text="6" />
+            <TextView
+                android:id="@+id/key7"
+                style="@style/Widget.Wallet.Key"
+                android:text="7" />
+            <TextView
+                android:id="@+id/key8"
+                style="@style/Widget.Wallet.Key"
+                android:text="8" />
+            <TextView
+                android:id="@+id/key9"
+                style="@style/Widget.Wallet.Key"
+                android:text="9" />
+            <Space
+                style="@style/Widget.Wallet.Key" />
+            <TextView
+                android:id="@+id/key0"
+                style="@style/Widget.Wallet.Key"
+                android:text="0" />
+            <ImageView
+                android:id="@+id/deleteKey"
+                style="@style/Widget.Wallet.KeyImage"
+                android:contentDescription="@string/delete"
+                android:src="@drawable/ic_wallet_keypad_delete" />
         </GridLayout>
-        <FrameLayout android:layout_width="match_parent" android:layout_height="69dp" android:background="@color/wallet_surface_alt" android:paddingHorizontal="16dp" android:paddingBottom="12dp">
-            <com.google.android.material.button.MaterialButton android:id="@+id/doneButton" style="@style/Widget.Wallet.PrimaryButton" android:layout_width="match_parent" android:layout_gravity="bottom" android:text="@string/done" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:background="@color/wallet_surface_alt"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="12dp">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/doneButton"
+                style="@style/Widget.Wallet.PrimaryButton"
+                android:layout_width="match_parent"
+                android:layout_gravity="bottom"
+                android:text="@string/done" />
         </FrameLayout>
     </LinearLayout>
 </layout>

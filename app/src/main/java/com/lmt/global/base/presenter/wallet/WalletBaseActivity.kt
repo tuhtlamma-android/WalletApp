@@ -15,10 +15,11 @@ abstract class WalletBaseActivity<VB : ViewDataBinding> : IActivity<VB, CommonVi
 
     final override fun provideViewModel() = viewModel<CommonViewModel>()
 
-    protected fun openRoot(target: Class<*>) {
+    protected fun openRoot(target: Class<*>, configureIntent: Intent.() -> Unit = {}) {
         if (javaClass == target) return
         startActivity(Intent(this, target).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            configureIntent()
         })
         finish()
     }

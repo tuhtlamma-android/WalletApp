@@ -7,6 +7,7 @@ import com.lmt.global.base.R
 import com.lmt.global.base.databinding.ActivityPaymentSuccessBinding
 import com.lmt.global.base.model.TransactionType
 import com.lmt.global.base.presenter.home.HomeActivity
+import com.lmt.global.base.presenter.home.HomePagerAdapter
 import com.lmt.global.base.presenter.wallet.WalletBaseActivity
 import com.lmt.global.base.presenter.wallet.WalletMoney
 import com.lmt.global.base.presenter.wallet.walletTransactionNumber
@@ -41,7 +42,11 @@ class PaymentSuccessActivity : WalletBaseActivity<ActivityPaymentSuccessBinding>
 
     override fun initListeners() = with(viewBinding) {
         copyButton.setOnClickListener { copyTransactionNumber(transactionNumber) }
-        backToWalletButton.setOnClickListener { openRoot(HomeActivity::class.java) }
+        backToWalletButton.setOnClickListener {
+            openRoot(HomeActivity::class.java) {
+                putExtra(HomeActivity.EXTRA_SELECTED_TAB, HomePagerAdapter.HOME)
+            }
+        }
     }
 
     companion object {

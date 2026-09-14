@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <data />
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,28 +19,64 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <LinearLayout android:id="@+id/navHome" style="@style/Widget.Wallet.NavigationItem" android:orientation="vertical">
-                <View style="@style/Widget.Wallet.NavigationIndicator" />
-                <ImageView style="@style/Widget.Wallet.NavigationIcon" android:contentDescription="@null" android:src="@drawable/sel_nav_home_icon" />
-                <TextView style="@style/Widget.Wallet.NavigationLabel" android:text="@string/home" />
+            <LinearLayout
+                android:id="@+id/navHome"
+                style="@style/Widget.Wallet.NavigationItem"
+                android:orientation="vertical">
+                <View
+                    style="@style/Widget.Wallet.NavigationIndicator" />
+                <ImageView
+                    style="@style/Widget.Wallet.NavigationIcon"
+                    android:contentDescription="@null"
+                    android:src="@drawable/sel_nav_home_icon" />
+                <TextView
+                    style="@style/Widget.Wallet.NavigationLabel"
+                    android:text="@string/home" />
             </LinearLayout>
 
-            <LinearLayout android:id="@+id/navHistory" style="@style/Widget.Wallet.NavigationItem" android:orientation="vertical">
-                <View style="@style/Widget.Wallet.NavigationIndicator" />
-                <ImageView style="@style/Widget.Wallet.NavigationIcon" android:contentDescription="@null" android:src="@drawable/sel_nav_history_icon" />
-                <TextView style="@style/Widget.Wallet.NavigationLabel" android:text="@string/history" />
+            <LinearLayout
+                android:id="@+id/navHistory"
+                style="@style/Widget.Wallet.NavigationItem"
+                android:orientation="vertical">
+                <View
+                    style="@style/Widget.Wallet.NavigationIndicator" />
+                <ImageView
+                    style="@style/Widget.Wallet.NavigationIcon"
+                    android:contentDescription="@null"
+                    android:src="@drawable/sel_nav_history_icon" />
+                <TextView
+                    style="@style/Widget.Wallet.NavigationLabel"
+                    android:text="@string/history" />
             </LinearLayout>
 
-            <LinearLayout android:id="@+id/navCards" style="@style/Widget.Wallet.NavigationItem" android:orientation="vertical">
-                <View style="@style/Widget.Wallet.NavigationIndicator" />
-                <ImageView style="@style/Widget.Wallet.NavigationIcon" android:contentDescription="@null" android:src="@drawable/sel_nav_cards_icon" />
-                <TextView style="@style/Widget.Wallet.NavigationLabel" android:text="@string/cards" />
+            <LinearLayout
+                android:id="@+id/navCards"
+                style="@style/Widget.Wallet.NavigationItem"
+                android:orientation="vertical">
+                <View
+                    style="@style/Widget.Wallet.NavigationIndicator" />
+                <ImageView
+                    style="@style/Widget.Wallet.NavigationIcon"
+                    android:contentDescription="@null"
+                    android:src="@drawable/sel_nav_cards_icon" />
+                <TextView
+                    style="@style/Widget.Wallet.NavigationLabel"
+                    android:text="@string/cards" />
             </LinearLayout>
 
-            <LinearLayout android:id="@+id/navMore" style="@style/Widget.Wallet.NavigationItem" android:orientation="vertical">
-                <View style="@style/Widget.Wallet.NavigationIndicator" />
-                <ImageView style="@style/Widget.Wallet.NavigationIcon" android:contentDescription="@null" android:src="@drawable/sel_nav_more_icon" />
-                <TextView style="@style/Widget.Wallet.NavigationLabel" android:text="@string/more" />
+            <LinearLayout
+                android:id="@+id/navMore"
+                style="@style/Widget.Wallet.NavigationItem"
+                android:orientation="vertical">
+                <View
+                    style="@style/Widget.Wallet.NavigationIndicator" />
+                <ImageView
+                    style="@style/Widget.Wallet.NavigationIcon"
+                    android:contentDescription="@null"
+                    android:src="@drawable/sel_nav_more_icon" />
+                <TextView
+                    style="@style/Widget.Wallet.NavigationLabel"
+                    android:text="@string/more" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

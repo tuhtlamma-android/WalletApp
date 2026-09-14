@@ -1,5 +1,6 @@
 package com.lmt.global.base.presenter.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -23,6 +24,7 @@ class HomeActivity : IActivity<ActivityHomeBinding, CommonViewModel>() {
             }
         })
         updateSelectedTab(pager.currentItem)
+        showRequestedTab(intent)
     }
 
     override fun initListeners() = with(viewBinding) {
@@ -34,6 +36,19 @@ class HomeActivity : IActivity<ActivityHomeBinding, CommonViewModel>() {
 
     fun showTab(position: Int) {
         viewBinding.pager.setCurrentItem(position, false)
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        showRequestedTab(intent)
+    }
+
+    private fun showRequestedTab(intent: Intent) {
+        val requestedTab = intent.getIntExtra(EXTRA_SELECTED_TAB, NO_SELECTED_TAB)
+        if (requestedTab in 0 until HomePagerAdapter.TAB_COUNT) {
+            showTab(requestedTab)
+        }
     }
 
     private fun updateSelectedTab(position: Int) = with(viewBinding) {
@@ -65,5 +80,10 @@ class HomeActivity : IActivity<ActivityHomeBinding, CommonViewModel>() {
                 showTab(HomePagerAdapter.HOME)
             }
         }
+    }
+
+    companion object {
+        const val EXTRA_SELECTED_TAB = "selected_home_tab"
+        private const val NO_SELECTED_TAB = -1
     }
 }

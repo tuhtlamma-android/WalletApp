@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.lmt.global.base.R
 import com.lmt.global.base.databinding.ActivityTransferFailureBinding
 import com.lmt.global.base.presenter.home.HomeActivity
+import com.lmt.global.base.presenter.home.HomePagerAdapter
 import com.lmt.global.base.presenter.wallet.WalletBaseActivity
 
 class TransferFailureActivity : WalletBaseActivity<ActivityTransferFailureBinding>() {
@@ -18,7 +19,11 @@ class TransferFailureActivity : WalletBaseActivity<ActivityTransferFailureBindin
             ?: getString(R.string.invalid_transaction_message)
     }
     override fun initListeners() {
-        viewBinding.backToWalletButton.setOnClickListener { openRoot(HomeActivity::class.java) }
+        viewBinding.backToWalletButton.setOnClickListener {
+            openRoot(HomeActivity::class.java) {
+                putExtra(HomeActivity.EXTRA_SELECTED_TAB, HomePagerAdapter.HOME)
+            }
+        }
     }
 
     companion object {

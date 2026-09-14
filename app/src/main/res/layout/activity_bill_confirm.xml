@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data />
     <LinearLayout
@@ -9,9 +10,10 @@
         android:orientation="vertical"
         android:paddingHorizontal="16dp">
 
-        <TextView android:id="@+id/backButton"
+        <TextView
+            android:id="@+id/backButton"
             style="@style/Widget.Wallet.BackButton"
-            android:padding="8dp"/>
+            android:padding="6dp" />
 
         <TextView
             style="@style/TextAppearance.Wallet.Display"
@@ -19,12 +21,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:gravity="center"
-
             android:text="@string/pay_bill" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="96dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:gravity="center"
             android:orientation="horizontal">
@@ -55,7 +56,7 @@
         <TextView
             android:id="@+id/amountText"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/sora_family"
             android:gravity="center"
             android:textColor="@color/wallet_black"
