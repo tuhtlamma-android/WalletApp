@@ -18,6 +18,7 @@ class TransactionAdapter(
 
     private var sourceItems = emptyList<WalletTransaction>()
     private var query = ""
+    private var filters = emptySet<HistoryTransactionFilter>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = Holder(
         ItemWalletTransactionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -36,8 +37,15 @@ class TransactionAdapter(
         applyFilter()
     }
 
+    fun setFilters(filters: Set<HistoryTransactionFilter>) {
+        this.filters = filters
+        applyFilter()
+    }
+
     private fun applyFilter() {
-        val filtered = sourceItems.filter { it.matchesHistoryQuery(query) }
+        val filtered = sourceItems.filter {
+            it.matchesHistoryQuery(query) && it.matchesHistoryFilters(filters)
+        }
         val visibleItems = if (showSections) {
             filtered.mapIndexed { index, item ->
                 val currentSection = walletSection(item.createdAt)

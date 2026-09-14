@@ -105,7 +105,7 @@
             android:rowCount="4">
             <TextView
                 android:id="@+id/key1"
-                style="@style/Widget.Wallet.Key"
+                                                                                                                                                                                                        style="@style/Widget.Wallet.Key"
                 android:text="1" />
             <TextView
                 android:id="@+id/key2"

@@ -161,7 +161,8 @@
             android:orientation="horizontal">
             <ImageView
                 style="@style/Widget.Wallet.MenuIcon"
-                android:src="@drawable/ic_wallet_back" />
+                android:src="@drawable/ic_wallet_back"
+                android:background="@drawable/bg_add_contacts"/>
             <TextView
                 style="@style/Widget.Wallet.MenuLabel"
                 android:text="@string/logout" />

@@ -34,6 +34,15 @@ class HistoryFragment : IFragment<FragmentHistoryBinding, HistoryViewModel>() {
         )
         transactionList.adapter = transactionAdapter
         searchInput.doAfterTextChanged { transactionAdapter.filter(it?.toString().orEmpty()) }
+        filterButton.setOnClickListener {
+            showHistoryFilterDialog(
+                context = requireContext(),
+                currentFilters = viewModel.uiState.value.selectedFilters,
+                onApply = { filters ->
+                    viewModel.onState(HistoryAction.ApplyFilters(filters))
+                }
+            )
+        }
         Unit
     }
 
@@ -44,6 +53,13 @@ class HistoryFragment : IFragment<FragmentHistoryBinding, HistoryViewModel>() {
                     transactionAdapter.submitTransactions(
                         state.transactions.map { it.toWalletTransaction() }
                     )
+                    transactionAdapter.setFilters(state.selectedFilters)
+                    viewBinding.filterButton.isSelected = state.selectedFilters.isNotEmpty()
+                    viewBinding.filterText.text = if (state.selectedFilters.isEmpty()) {
+                        getString(R.string.filter)
+                    } else {
+                        getString(R.string.filter_with_count, state.selectedFilters.size)
+                    }
                 }
             }
         }

@@ -13,7 +13,7 @@
         <TextView
             android:id="@+id/backButton"
             style="@style/Widget.Wallet.BackButton"
-            android:padding="6dp" />
+            android:padding="8dp" />
 
         <TextView
             style="@style/TextAppearance.Wallet.Display"

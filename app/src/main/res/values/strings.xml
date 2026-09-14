@@ -55,6 +55,13 @@
     <string name="latest_transactions">Latest Transactions</string>
     <string name="view_all">View all</string>
     <string name="filter">Filter</string>
+    <string name="filter_with_count">Filter (%1$d)</string>
+    <string name="search_history_hint">Search contact or biller</string>
+    <string name="filter_transactions">Filter transactions</string>
+    <string name="filter_transactions_description">Choose one or more transaction types.</string>
+    <string name="all_billers">All billers</string>
+    <string name="clear_all">Clear all</string>
+    <string name="apply_filters">Apply</string>
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
     <string name="profile_settings">Profile Settings</string>

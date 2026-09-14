@@ -42,4 +42,64 @@ class HistorySearchTest {
     fun blankSearch_keepsTransactionVisible() {
         assertTrue(transaction.matchesHistoryQuery("   "))
     }
+
+    @Test
+    fun transferFilter_onlyMatchesTransfers() {
+        val filters = setOf(HistoryTransactionFilter.TRANSFER)
+
+        assertTrue(transaction.matchesHistoryFilters(filters))
+        assertFalse(billPayment.matchesHistoryFilters(filters))
+    }
+
+    @Test
+    fun allBillersFilter_matchesEveryBillPayment() {
+        val electricityPayment = billPayment.copy(
+            id = 3L,
+            iconKey = WalletVisuals.BILL_ELECTRICITY,
+            merchant = "Electricity"
+        )
+        val filters = setOf(HistoryTransactionFilter.ALL_BILLERS)
+
+        assertTrue(billPayment.matchesHistoryFilters(filters))
+        assertTrue(electricityPayment.matchesHistoryFilters(filters))
+        assertFalse(transaction.matchesHistoryFilters(filters))
+    }
+
+    @Test
+    fun specificBillerFilter_onlyMatchesItsBillerType() {
+        val electricityPayment = billPayment.copy(
+            id = 3L,
+            iconKey = WalletVisuals.BILL_ELECTRICITY,
+            merchant = "Electricity"
+        )
+        val filters = setOf(HistoryTransactionFilter.WATER)
+
+        assertTrue(billPayment.matchesHistoryFilters(filters))
+        assertFalse(electricityPayment.matchesHistoryFilters(filters))
+    }
+
+    @Test
+    fun multipleFilters_useOrWhileSearchAndFilterUseAnd() {
+        val filters = setOf(
+            HistoryTransactionFilter.TRANSFER,
+            HistoryTransactionFilter.WATER
+        )
+
+        assertTrue(transaction.matchesHistoryFilters(filters))
+        assertTrue(billPayment.matchesHistoryFilters(filters))
+        assertTrue(
+            billPayment.matchesHistoryFilters(filters) &&
+                billPayment.matchesHistoryQuery("wat")
+        )
+        assertFalse(
+            transaction.matchesHistoryFilters(filters) &&
+                transaction.matchesHistoryQuery("wat")
+        )
+    }
+
+    @Test
+    fun emptyFilters_keepEveryTransactionVisible() {
+        assertTrue(transaction.matchesHistoryFilters(emptySet()))
+        assertTrue(billPayment.matchesHistoryFilters(emptySet()))
+    }
 }

@@ -11,14 +11,14 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="52dp">
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/backButton"
                 style="@style/Widget.Wallet.BackButton"
                 android:layout_gravity="start|center_vertical" />
             <ImageView
-                android:layout_width="89dp"
-                android:layout_height="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/img_text_screen" />
@@ -81,7 +81,7 @@
             android:id="@+id/resendButton"
             style="@style/TextAppearance.Wallet.Link"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/resend_code" />
         <Space
