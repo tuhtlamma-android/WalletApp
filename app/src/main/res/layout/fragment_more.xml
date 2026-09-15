@@ -89,14 +89,18 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp" />
         <LinearLayout
+            android:id="@+id/analyticsButton"
             style="@style/Widget.Wallet.MenuRow"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="horizontal">
             <ImageView
                 style="@style/Widget.Wallet.MenuIcon"
                 android:src="@drawable/ic_more_analytics" />
             <TextView
                 style="@style/Widget.Wallet.MenuLabel"
-                android:text="Analytics" />
+                android:text="@string/analytics" />
             <ImageView
                 style="@style/Widget.Wallet.ChevronImage" />
         </LinearLayout>

@@ -184,4 +184,35 @@
     <string name="amount_value">Amount\n%1$s</string>
     <string name="payment_failed">Payment Failed :(</string>
     <string name="invalid_transaction_message">The transaction information is invalid.</string>
+    <string name="analytics">Analytics</string>
+    <string name="analytics_heading">Know where it went</string>
+    <string name="analytics_description">A clear view of your transfers and bill payments.</string>
+    <string name="analytics_7_days">7 days</string>
+    <string name="analytics_30_days">30 days</string>
+    <string name="analytics_all">All</string>
+    <string name="analytics_total_spent">Total spent</string>
+    <string name="analytics_transactions">Transactions</string>
+    <string name="analytics_average">Average</string>
+    <string name="analytics_spending_pulse">Spending pulse</string>
+    <string name="analytics_where_it_went">Where it went</string>
+    <string name="analytics_summary_7_days">Across the last 7 days</string>
+    <string name="analytics_summary_30_days">Across the last 30 days</string>
+    <string name="analytics_summary_all">Across all recorded spending</string>
+    <string name="analytics_trend_daily">Daily totals · peak highlighted</string>
+    <string name="analytics_trend_five_day">Five-day totals · peak highlighted</string>
+    <string name="analytics_trend_monthly">Monthly totals · peak highlighted</string>
+    <string name="analytics_empty_state">No spending in this period. Make a transfer or pay a bill to see your analytics.</string>
+    <string name="analytics_session_empty_state">Sign in to view your spending analytics.</string>
+    <string name="analytics_percentage">%1$d%%</string>
+    <string name="analytics_zero_categories">0 categories</string>
+    <string name="analytics_zero_count">0</string>
+    <string name="analytics_zero_percentage">0%</string>
+    <plurals name="analytics_chart_description">
+        <item quantity="one">Spending chart with %1$d time period</item>
+        <item quantity="other">Spending chart with %1$d time periods</item>
+    </plurals>
+    <plurals name="analytics_category_count">
+        <item quantity="one">%1$d category</item>
+        <item quantity="other">%1$d categories</item>
+    </plurals>
 </resources>

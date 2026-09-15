@@ -33,10 +33,12 @@ import com.lmt.global.base.presenter.more.MoreViewModel
 import com.lmt.global.base.presenter.splash.SplashViewModel
 import com.lmt.global.base.presenter.profile.ProfileViewModel
 import com.lmt.global.base.presenter.profile.ChangePasswordViewModel
+import com.lmt.global.base.presenter.analytics.AnalyticsViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.remoteconfig.remoteConfig
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
+import org.koin.core.module.dsl.viewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -112,5 +114,6 @@ private fun viewModels() = object : Feature {
         viewModelOf(::MoreViewModel)
         viewModelOf(::ProfileViewModel)
         viewModelOf(::ChangePasswordViewModel)
+        viewModel { AnalyticsViewModel(walletRepository = get(), sessionManager = get()) }
     }
 }

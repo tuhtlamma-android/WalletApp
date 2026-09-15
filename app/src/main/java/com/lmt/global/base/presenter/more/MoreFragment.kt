@@ -5,6 +5,7 @@ import com.lmt.global.base.R
 import com.lmt.global.base.common.IFragment
 import com.lmt.global.base.databinding.FragmentMoreBinding
 import com.lmt.global.base.presenter.about.AboutActivity
+import com.lmt.global.base.presenter.analytics.AnalyticsActivity
 import com.lmt.global.base.presenter.bill.BillListActivity
 import com.lmt.global.base.presenter.transfer.TransferListActivity
 import com.lmt.global.base.presenter.auth.LoginActivity
@@ -34,6 +35,7 @@ class MoreFragment : IFragment<FragmentMoreBinding, MoreViewModel>() {
     override fun initListeners() = with(viewBinding) {
         payBillsButton.setOnClickListener { open(BillListActivity::class.java) }
         transferButton.setOnClickListener { open(TransferListActivity::class.java) }
+        analyticsButton.setOnClickListener { open(AnalyticsActivity::class.java) }
         aboutButton.setOnClickListener { open(AboutActivity::class.java) }
         logoutButton.setOnClickListener { viewModel.onState(MoreAction.Logout) }
     }
